@@ -1,0 +1,15 @@
+/* Inactive dots */
+.react-multi-carousel-dot button {
+    background: #888585 !important;
+    opacity: 1;
+    border: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+  }
+  
+  /* Active dot with gradient background */
+  .react-multi-carousel-dot--active button {
+    background: linear-gradient(249.61deg, #F295BE 20.76%, #63A7D4 77.26%) !important;
+  }
+  
