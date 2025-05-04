@@ -1,5 +1,7 @@
-import { FaUser, FaEnvelope, FaPhoneAlt, FaPaperPlane } from 'react-icons/fa';
+import { FaRegUser, FaRegEnvelope   } from 'react-icons/fa';
 import { IoChatbubblesOutline } from "react-icons/io5";
+import { IoCallOutline } from "react-icons/io5";
+import { GrSend } from "react-icons/gr";
 
 export default function ContactSection() {
   return (
@@ -16,16 +18,18 @@ export default function ContactSection() {
 {/* Title */}
 <section>
   <div className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light bg-gradient-to-r from-[#2a5e81] via-[#F295BE] to-[#197abb] text-center bg-clip-text text-transparent leading-tight gap-4 pb-2'>
- <span>Get in Touch</span> <span className='font-bold'>Anytime</span> 
+ <span>Get in Touch</span> <span className='font-bold'>Anytime !</span> 
   </div>
 </section>
 
 {/* Subtitle */}
 <section>
-  <div className='text-gray-600  mb-12 text-md lg:text-lg justify-center text-center  max-2w-xl mx-automb-12'>
+  <div className='text-gray-600   mb-12 text-md lg:text-lg justify-center text-center  max-2w-xl mx-auto'>
    Ready to evaluate your hiring process ? Our team is here to support your journey
   </div>
 </section>
+
+<hr className="w-20 h-1 bg-gradient-to-r from-[#63A7D4] to-[#F295BE] border-0 rounded mx-auto mt-4 mb-12" />
 
 {/* Contact Section */}
 <div className='flex max-lg:flex-col gap-6'>
@@ -39,7 +43,7 @@ export default function ContactSection() {
       <div className='text-3xl p-4 rounded-full bg-purple-100 text-purple-400'><IoChatbubblesOutline /></div>
       <div>
         <h3 className='text-lg font-light'>Send us a Message</h3>
-        <p className='text-md text-gray-500'>We&apos;ll get back to you within 24 hours</p>
+        <p className='text-md font-light text-gray-500'>We&apos;ll get back to you within 24 hours</p>
       </div>
     </div>
 
@@ -47,21 +51,21 @@ export default function ContactSection() {
       <label htmlFor="" className=''>Name</label>
       {/* Name */}
       <div className='relative mt-2'>
-        <FaUser className='absolute top-3 left-3 text-gray-400' />
+        <FaRegUser className='absolute top-3 left-3 text-gray-400' />
         <input
           type='text'
           placeholder='Enter your name'
-          className='pl-10 w-full rounded-lg py-2 px-3 outline-none bg-gray-100 focus:bg-white'
+          className='pl-10 w-full rounded-lg py-2 px-3 outline-none placeholder:font-light bg-gray-100 focus:bg-white'
         />
       </div>
       <label htmlFor="">Email</label>
       {/* Email */}
       <div className='relative mt-2'>
-        <FaEnvelope className='absolute top-3 left-3 text-gray-400' />
+        <FaRegEnvelope className='absolute top-3 left-3 text-gray-400' />
         <input
           type='email'
           placeholder='Enter your email'
-          className='pl-10 w-full rounded-lg py-2 px-3 outline-none bg-gray-100 focus:bg-white'
+          className='pl-10 w-full rounded-lg py-2 px-3 outline-none placeholder:font-light bg-gray-100 focus:bg-white'
         />
       </div>
       <label htmlFor="">Message</label>
@@ -70,15 +74,15 @@ export default function ContactSection() {
         <textarea
           rows={4}
           placeholder='How can we help you?'
-          className='w-full rounded-lg py-2 px-3 outline-none bg-gray-100 focus:bg-white  resize-none'
+          className='w-full rounded-lg py-2 px-3 outline-none bg-gray-100 placeholder:font-light focus:bg-white  resize-none'
         />
       </div>
 
       <button
         type='submit'
-        className='w-full bg-gradient-to-r from-blue-400 to-pink-400 text-white font-medium py-4 rounded-lg flex justify-center items-center gap-2'
+        className='w-full bg-gradient-to-r from-blue-400 to-pink-400 text-white font-light py-4 rounded-lg flex justify-center items-center gap-2'
       >
-        Let&apos;s Talk <FaPaperPlane />
+        Send Message <GrSend />
       </button>
     </form>
   </div>
@@ -90,17 +94,17 @@ export default function ContactSection() {
       </div>
       <div className='flex w-full max-sm:flex-col gap-4'>
       <div className='bg-white rounded-xl shadow-md p-6 flex items-center gap-4 w-full sm:w-1/2'>
-      <div className='text-3xl text-purple-400'><FaPhoneAlt /></div>
+      <div className='text-3xl text-purple-400'><IoCallOutline /></div>
       <div>
-        <h4 className='font-semibold text-sm'>Phone</h4>
-        <p className='text-gray-600 text-sm'>+1 (555) 123-4567</p>
+        <h4 className='font-light text-sm'>Phone</h4>
+        <p className='text-gray-600 font-light text-sm'>+1 (555) 123-4567</p>
       </div>
     </div>
     <div className='bg-white rounded-xl shadow-md p-6 flex items-center gap-4 w-full sm:w-1/2'>
-      <div className='text-3xl text-purple-400'><FaEnvelope /></div>
+      <div className='text-3xl text-purple-400'><FaRegEnvelope /></div>
       <div>
-        <h4 className='font-semibold text-sm'>Email</h4>
-        <p className='text-gray-600 text-sm'>support@hireIn.ai</p>
+        <h4 className='font-light text-sm'>Email</h4>
+        <p className='text-gray-600 font-light text-sm'>support@hireIn.ai</p>
       </div>
     </div>
       </div>

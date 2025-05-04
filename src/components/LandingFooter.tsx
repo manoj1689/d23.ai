@@ -1,13 +1,14 @@
 import {
-    FaEnvelope,
-    FaPhone,
-    FaMapMarkerAlt,
+  FaRegEnvelope,
     FaLinkedin,
     FaComments,
     FaFacebookMessenger,
     FaYoutube,
   } from "react-icons/fa";
-  
+
+
+  import { IoCallOutline } from "react-icons/io5";
+  import { IoLocationOutline } from "react-icons/io5";
   function Footer() {
     return (
       <footer className="bg-white ">
@@ -53,9 +54,9 @@ import {
             <div className="flex-1">
               <h4 className="text-md md:text-lg font-semibold mb-2">Contact</h4>
               <ul className="text-md md:text-lg text-[#9CA3AF] font-light space-y-2">
-                <li className="flex items-center gap-2"><FaEnvelope /> support@d23.ai</li>
-                <li className="flex items-center gap-2"><FaPhone /> +1 (555) 123-4567</li>
-                <li className="flex items-center gap-2"><FaMapMarkerAlt /> 800 S Abel St, Milpitas, CA 95035</li>
+                <li className="flex items-center gap-2"><FaRegEnvelope /> support@d23.ai</li>
+                <li className="flex items-center gap-2"><IoCallOutline /> +1 (555) 123-4567</li>
+                <li className="flex items-center gap-2"><IoLocationOutline /> 800 S Abel St, Milpitas, CA 95035</li>
                 <li className="flex gap-6 text-lg mt-2">
                   <FaLinkedin className="hover:text-blue-600 cursor-pointer" size={24} />
                   <FaComments className="hover:text-gray-500 cursor-pointer" size={24}  />

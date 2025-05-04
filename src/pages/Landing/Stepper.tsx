@@ -8,7 +8,7 @@ function getReady() {
       <div className="text-center mb-8">
         <span className="text-xs md:text-sm text-[#4DA0D7] bg-sky-100 px-4 py-2 rounded-full font-normal mb-2">Quick Onboarding</span>
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-transparent bg-clip-text bg-gradient-to-l from-[#F295BE] to-[#63A7D4] py-4">
-        <span className='font-extralight'>Start Debating in </span> <span className=" font-semibold">Just 3 Steps</span>
+          <span className='font-extralight'>Start Debating in </span> <span className=" font-semibold">Just 3 Steps</span>
         </h2>
         <p className=" text-gray-600  mb-12 text-md lg:text-lg justify-center ">
           From signup to AI analysis—experience debating like never before, simplified into three easy steps.
@@ -36,18 +36,17 @@ function getReady() {
             <img
               src="/images/logo/d.png"
               alt="Background Art"
-              className="absolute bottom-20 right-4 w-24 opacity-10 pointer-events-none"
+              className="absolute -top-4 -right-4 w-32 opacity-10 pointer-events-none"
+              style={{ transform: 'rotate(-30deg)' }}
             />
-            <img
-              src="/images/logo/d.png"
-              alt="Background Art"
-              className="absolute top-20 left-24 w-24 opacity-10 pointer-events-none"
-            />
+
             <img
               src="/images/logo/d.png"
               alt="Background Art"
               className="absolute bottom-4 left-4 w-24 opacity-10 pointer-events-none"
+              style={{ transform: 'rotate(40deg)' }}
             />
+
           </div>
 
           {/* Hover View */}
@@ -82,17 +81,15 @@ function getReady() {
             <img
               src="/images/logo/d.png"
               alt="Background Art"
-              className="absolute bottom-8 right-24 w-24 opacity-10 pointer-events-none"
+              className="absolute -top-4 right-8 w-32 opacity-10 pointer-events-none"
+              style={{ transform: 'rotate(-30deg)' }}
             />
+
             <img
               src="/images/logo/d.png"
               alt="Background Art"
-              className="absolute top-4 right-4 w-24 opacity-10 pointer-events-none"
-            />
-            <img
-              src="/images/logo/d.png"
-              alt="Background Art"
-              className="absolute bottom-24 left-24 w-24 opacity-10 pointer-events-none"
+              className="absolute bottom-8 left-4 w-24 opacity-10 pointer-events-none"
+              style={{ transform: 'rotate(40deg)' }}
             />
           </div>
 
@@ -100,7 +97,7 @@ function getReady() {
           <div className="absolute inset-0 flex flex-col justify-around  bg-gradient-to-tr from-[#63A7D4] to-[#F295BE] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out p-6">
             <h1 className="text-xl lg:text-3xl font-bold mb-2">Invite Friends by Email
               or Username</h1>
-              <p className="text-lg lg:text-2xl mb-4">
+            <p className="text-lg lg:text-2xl mb-4">
               debate against our AI, or use matchmaking to find opponents with similar
               interests.
             </p>
@@ -130,17 +127,15 @@ function getReady() {
             <img
               src="/images/logo/d.png"
               alt="Background Art"
-              className="absolute bottom-24 right-4 w-24 opacity-10 pointer-events-none"
+              className="absolute -top-12 right-12 w-32 opacity-10 pointer-events-none"
+              style={{ transform: 'rotate(-40deg)' }}
             />
+
             <img
               src="/images/logo/d.png"
               alt="Background Art"
-              className="absolute top-8 left-20 w-24 opacity-10 pointer-events-none"
-            />
-            <img
-              src="/images/logo/d.png"
-              alt="Background Art"
-              className="absolute bottom-4 left-4 w-24 opacity-10 pointer-events-none"
+              className="absolute -bottom-4 left-4 w-24 opacity-10 pointer-events-none"
+              style={{ transform: 'rotate(40deg)' }}
             />
           </div>
 
@@ -148,7 +143,7 @@ function getReady() {
           <div className="absolute inset-0 flex flex-col justify-around bg-gradient-to-tr from-[#63A7D4] to-[#F295BE] text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out p-6">
             <h1 className="text-xl lg:text-3xl font-bold mb-2">Set a time with our
               calender</h1>
-              <p className="text-lg lg:text-2xl mb-4">
+            <p className="text-lg lg:text-2xl mb-4">
               integration, suggest
               alternate times if needed,
               and prepare with AI

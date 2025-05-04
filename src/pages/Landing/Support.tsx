@@ -32,35 +32,35 @@ function Support() {
                 </div>
 
                 {/* Two Column Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
+                <div className="flex flex-col lg:flex-row gap-10 ">
                     {/* Left: AI Feedback Simulation */}
                     <div className="bg-white border relative border-gray-100 shadow-xl rounded-2xl p-6 space-y-4">
                         <div className="text-neutral-600 text-sm border  border-blue-100 rounded-lg p-4 bg-blue-50">
-                            <p className="font-light text-lg">
+                            <p className="font-light text-md lg:text-lg">
                                 &quot;The economic impact of renewable energy subsidies is negligible when compared to...&quot;
                             </p>
-                            <p className="text-md  text-[#4DA0D7] mt-2">
+                            <p className="text-xs lg:text-md  text-[#4DA0D7] mt-2">
                                 ⓘ This claim requires verification. Consider citing specific studies.
                             </p>
                         </div>
 
-                        <div className="bg-[#4DA0D733] text-sm text-gray-800 p-4 rounded-lg flex items-start gap-3">
+                        <div className="bg-[#4DA0D733] text-gray-800 p-4 rounded-lg flex items-start gap-3">
                             <span className="p-2 bg-sky-200 rounded-full text-sky-400  text-xl"><FaLightbulb />
                             </span>
                             <div>
                                 <p className="font-medium text-lg">AI Coach Suggestion</p>
-                                <p className='text-lg font-light'>
+                                <p className='text-md lg:text-[17px] font-light'>
                                     Try strengthening your argument with the 2023 International Energy Agency report that shows a 12%
                                     ROI on renewable subsidies.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="bg-[#4DA0D733] text-sm text-gray-800 p-4 rounded-lg flex items-start gap-3">
+                        <div className="bg-[#4DA0D733]  text-gray-800 p-4 rounded-lg flex items-start gap-3">
                             <span className="p-2 bg-sky-200 rounded-full text-sky-400  "><FaCheck size={20} /> </span>
                             <div>
                                 <p className="font-medium text-lg">Fact Check: Verified</p>
-                                <p className='text-lg font-light'>
+                                <p className='text-md lg:text-[17px]  font-light'>
                                     Your point about carbon reduction targets is accurate according to the latest IPCC report (2024).
                                 </p>
                             </div>
@@ -72,11 +72,11 @@ function Support() {
                         <h3 className="text-2xl font-semibold text-gray-800">Real-time AI Support</h3>
 
                         {/* AI Coach */}
-                        <div className=" text-sm text-neutral-800 p-4 rounded-lg flex items-start gap-3">
+                        <div className="  text-neutral-800 p-4 rounded-lg flex items-start gap-3">
                             <span className="p-2 bg-sky-100 rounded-full text-sky-400 text-xl"><FaBrain  size={20}/></span>
                             <div>
                                 <p className="font-medium text-lg lg:text-xl">AI Coach</p>
-                                <p className="text-lg font-light text-neutral-600">
+                                <p className="text-md lg:text-[17px]  font-light text-neutral-600">
                                     Receives personalized suggestions to strengthen arguments, improve delivery, and address logical
                                     fallacies in real-time.
                                 </p>
@@ -84,11 +84,11 @@ function Support() {
                         </div>
 
                         {/* Fact Checker */}
-                        <div className=" text-sm text-neutral-800 p-4 rounded-lg flex items-start gap-3">
+                        <div className="  text-neutral-800 p-4 rounded-lg flex items-start gap-3">
                             <span className="p-2 bg-sky-100 rounded-full text-sky-400 text-xl"><FaSearch size={20}/></span>
                             <div>
                                 <p className="font-medium text-lg lg:text-xl">Fact Checker</p>
-                                <p className="text-lg text-neutral-600 font-light">
+                                <p className="text-md lg:text-[17px]  text-neutral-600 font-light">
                                     Instantly verifies claims against reliable sources, providing confidence in your arguments and
                                     helping identify misinformation.
                                 </p>
@@ -96,21 +96,24 @@ function Support() {
                         </div>
 
                         {/* AI Opponent */}
-                        <div className=" text-sm text-neutral-800 p-4 rounded-lg flex items-start gap-3">
+                        <div className="  text-neutral-800 p-4 rounded-lg flex items-start gap-3">
                             <span className="p-2 bg-sky-100 rounded-full text-sky-400 text-xl"><RiSpeakAiFill size={20}/></span>
                             <div>
                                 <p className="font-medium text-lg lg:text-xl">AI Opponent</p>
-                                <p className="text-lg text-neutral-600 font-light">
+                                <p className="text-md lg:text-[17px]  text-neutral-600 font-light">
                                     Practice against an AI that adapts to your skill level, offering challenging counterarguments tailored
                                     to your debate style.
                                 </p>
                             </div>
                         </div>
-
+                       
                         {/* CTA Button */}
-                        <button className="mt-6 text-lg font-light bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition">
+                        <div className='flex w-full justify-center lg:justify-start '>
+                        <button className="relative mt-6 text-lg font-light bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition">
                             Try AI Features Now
                         </button>
+                        </div>
+                       
                     </div>
 
                 </div>

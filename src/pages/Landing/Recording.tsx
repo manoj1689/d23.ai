@@ -57,7 +57,7 @@ const DebateCarousel = () => {
     <div className="container mx-auto p-4 py-8 ">
        <div className='flex w-full items-center justify-between mb-4'>
   <h2 className="text-xl font-semibold">Recent Recordings</h2>
-  <button className="text-sky-600 text-lgfont-medium hover:underline">View All</button>
+  <button className="text-sky-600 text-sm font-light hover:underline">View All</button>
 </div>
 
    
@@ -69,7 +69,7 @@ const DebateCarousel = () => {
         showDots={true}
         infinite={false}
         containerClass="carousel-container"
-        itemClass="px-2 py-12"
+        itemClass="px-2 py-16"
       >
         {debateData.map((debate, index) => (
           <div key={index} className="bg-white rounded shadow-md overflow-hidden">
@@ -80,9 +80,12 @@ const DebateCarousel = () => {
               </span>
             </div>
             <div className="p-3">
-              <h3 className="font-bold text-md">{debate.title}</h3>
+              <h3 className="font-semibold text-md">{debate.title}</h3>
+              <div className='flex font-light justify-between pt-4'>
               <p className="text-sm text-gray-500">{debate.format}</p>
               <p className="text-sm text-gray-400">{debate.date}</p>
+              </div>
+            
             </div>
           </div>
         ))}

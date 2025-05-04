@@ -32,7 +32,7 @@ function Navbar() {
             <img
               src="./images/logo/company-logo.png"
               alt="Company Logo"
-              className="w-32"
+              className="w-24 sm:w-32"
             />
           </div>
 
@@ -43,7 +43,7 @@ function Navbar() {
               <button
                 onClick={() => setActiveSection("Features")}
                 className={`text-white text-lg transition-all duration-300 ${
-                  activeSection === "Features" ? "font-medium" : ""
+                  activeSection === "Features" ? "" : "font-light"
                 }`}
               >
                 Features
@@ -58,7 +58,7 @@ function Navbar() {
               <button
                 onClick={() => setActiveSection("Pricing")}
                 className={`text-white text-lg transition-all duration-300 ${
-                  activeSection === "Pricing" ? "font-medium" : ""
+                  activeSection === "Pricing" ? "font-medium" : "font-light"
                 }`}
               >
                 Pricing
@@ -73,7 +73,7 @@ function Navbar() {
               <button
                 onClick={() => setActiveSection("About")}
                 className={`text-white text-lg transition-all duration-300 ${
-                  activeSection === "About" ? "font-medium" : ""
+                  activeSection === "About" ? "font-medium" : "font-light"
                 }`}
               >
                 About
@@ -88,7 +88,7 @@ function Navbar() {
               <button
                 onClick={() => setActiveSection("Blog")}
                 className={`text-white text-lg transition-all duration-300 ${
-                  activeSection === "Blog" ? "font-medium" : ""
+                  activeSection === "Blog" ? "font-medium" : "font-light"
                 }`}
               >
                 Blog
@@ -103,7 +103,7 @@ function Navbar() {
               <button
                 onClick={() => setActiveSection("Join Us")}
                 className={`text-white text-lg transition-all duration-300 ${
-                  activeSection === "Join Us" ? "font-medium" : ""
+                  activeSection === "Join Us" ? "font-medium" : "font-light"
                 }`}
               >
                 Join Us

@@ -32,7 +32,7 @@ const ImageCarouselPage = () => {
           showDots={true}
           infinite={true}
           containerClass="carousel-container"
-          itemClass="px-2 py-8"
+          itemClass="px-2 "
           dotListClass=""
         >
           <div className="w-full h-full flex items-center justify-center">

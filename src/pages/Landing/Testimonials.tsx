@@ -55,7 +55,7 @@ function Testimonials() {
                                     <strong className="text-lg text-gray-800">2890</strong> Rating
                                 </span>
                             </div>
-                            <p className="text-gray-600 text-base lg:text-lg font-light mt-4 px-4">
+                            <p className="text-gray-600 text-md lg:text-[17px] font-light mt-4 px-4">
                                 “D23.ai helped me secure the national championship. The AI feedback was instrumental in perfecting my arguments.”
                             </p>
                             <div className='flex justify-center'>
@@ -83,7 +83,7 @@ function Testimonials() {
                                     <strong className="text-lg text-gray-800">2780</strong> Rating
                                 </span>
                             </div>
-                            <p className="text-gray-600 text-base lg:text-lg font-light mt-4 px-4">
+                            <p className="text-gray-600 text-md lg:text-[17px] font-light mt-4 px-4">
                                 “Our team’s win rate increased by 70% after incorporating D23.ai into our practice routine.”
                             </p>
                             <div className='flex justify-center'>
@@ -110,7 +110,7 @@ function Testimonials() {
                                     <strong className="text-lg text-gray-800">2850</strong> Rating
                                 </span>
                             </div>
-                            <p className="text-gray-600 text-base lg:text-lg font-light mt-4 px-4">
+                            <p className="text-gray-600 text-md lg:text-[17px] font-light mt-4 px-4">
                                 “The platform’s multilingual support helped me excel in international competitions.”
                             </p>
                             <div className='flex justify-center'>

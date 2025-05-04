@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import firebaseAuthReducer from './slices/firebaseAuthSlice';
 import registerReducer from "./slices/registerSlice"
-
+import createDebateReducer from "./slices/createDebate"
 export const store = configureStore({
   reducer: {
     firebaseAuth: firebaseAuthReducer,
-    register:registerReducer 
+    register:registerReducer ,
+    createDebate:createDebateReducer
   },
 });
 

@@ -104,7 +104,7 @@ export default function ExploreDebatesPage() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab as "Live" | "Upcoming" | "Past")}
-              className={`px-8 py-2 rounded-full font-normal transition ${activeTab === tab
+              className={`px-8 py-2 rounded-full text-sm font-normal transition ${activeTab === tab
                 ? "bg-blue-100 text-[#2B6CB0]"
                 : "text-gray-500 hover:text-[#2B6CD0]"
                 }`}

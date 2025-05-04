@@ -6,7 +6,7 @@ import { IoTrophyOutline } from "react-icons/io5";
 export default function LiveStreamingSection() {
     return (
         <section className='bg-gray-50 '>
-            <div className=" container mx-auto py-12 gap-8 ">
+            <div className=" container mx-auto py-12 gap-8 px-4 ">
                 {/* Live & On-Demand Debates Section */}
                 <div className="text-center mb-16">
                     <span className="text-xs md:text-sm text-[#4DA0D7] bg-sky-100 px-4 py-2 rounded-full font-normal mb-2 inline-block">
@@ -50,7 +50,7 @@ export default function LiveStreamingSection() {
                                 </span>
                                 <div className='space-y-4'>
                                     <h4 className=" text-base md:text-lg lg:text-2xl font-normal ">Live Streaming</h4>
-                                    <p className="text-sm lg:text-lg font-light text-gray-600">
+                                    <p className="text-md lg:text-[17px] font-light text-gray-600">
                                         Stream your debates live on YouTube with professional overlays and audience interaction.
                                     </p>
                                 </div>
@@ -62,7 +62,7 @@ export default function LiveStreamingSection() {
                               
                                 <div className='space-y-4'>
                                     <h4 className=" text-base md:text-lg lg:text-2xl font-normal ">Archived Content</h4>
-                                    <p className="text-sm lg:text-lg font-light text-gray-600 ">
+                                    <p className="text-md lg:text-[17px] font-light text-gray-600 ">
                                         Access our library of past debates, organized by topic and format for continuous learning.
                                     </p>
                                 </div>
@@ -73,7 +73,7 @@ export default function LiveStreamingSection() {
                                 </span>
                                 <div className='space-y-4'>
                                     <h4 className=" text-base md:text-lg lg:text-2xl font-normal ">Highlight Reels</h4>
-                                    <p className="text-sm lg:text-lg font-light text-gray-600">
+                                    <p className="text-md lg:text-[17px] font-light text-gray-600">
                                         Watch curated highlights from top debates and learn from the best moments.
                                     </p>
                                 </div>
