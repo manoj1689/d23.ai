@@ -1,5 +1,5 @@
 "use client"
-
+import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { type ChangeEvent, useState, type FormEvent } from "react"
 import { FaStar } from "react-icons/fa"
 import Select, { MultiValue } from "react-select"
@@ -300,7 +300,10 @@ const DebateModal = () => {
 
         <div className="container mx-auto p-6">
 
+          <div className="flex  gap-4  my-4 text-gray-600">
+            <span><MdOutlineCreateNewFolder size={30} color='#2B6CB0' /> </span> <h2 className="text-2xl font-medium"> Create Debate</h2>
 
+          </div>
           <form onSubmit={handleSubmit} className="space-y-6  bg-white max-w-4xl mx-auto rounded-2xl p-6 ">
             <section className="bg-gray-100 shadow rounded-xl space-y-4 p-6">
               <h2 className="text-lg md:text-xl font-semibold mb-4">Basic Information</h2>

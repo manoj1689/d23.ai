@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import type { RootState, AppDispatch } from '../../store/store';
+import { LuBrain } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchTopics,
@@ -98,17 +99,25 @@ const TopicsPage = () => {
       <div className="lg:ml-64 min-h-screen bg-gray-50">
         {/* Header */}
         <div >
-          
-            <HomeNavbar/>
+
+          <HomeNavbar />
         </div>
 
         {/* Main Content */}
         <div className="container mx-auto p-6">
-          <div className="max-w-4xl mx-auto">
-            <div className='flex w-full justify-end '>
-              <button className='flex gap-2 px-4 py-2  bg-gradient-to-r from-[#63A7D4] to-[#F295BE] rounded-lg items-center text-white shadow-lg cursor-pointer' onClick={()=>router.push("/AddTopics")}> <span><IoMdAdd size={20} /></span> <span>Add Topic</span></button>
+        <div className='flex w-full justify-between my-4'>
+              <div className="flex  gap-4   text-gray-600">
+                <span><LuBrain size={30} color='#2B6CB0' /> </span> <h2 className="text-2xl font-medium"> Practice with Ai</h2>
 
+              </div>
+              <div>
+                <button className='flex gap-2 px-4 py-2  bg-gradient-to-r from-[#63A7D4] to-[#F295BE] rounded-lg items-center text-white shadow-lg cursor-pointer' onClick={() => router.push("/AddTopics")}> <span><IoMdAdd size={20} /></span> <span>Add Topic</span></button>
+
+              </div>
             </div>
+          <div className="max-w-4xl mx-auto bg-white p-4 rounded-2xl">
+        
+
             <h1 className="text-md font-semibold text-gray-800 mb-2">Search for a topic</h1>
 
             {/* Search Bar */}
@@ -138,8 +147,8 @@ const TopicsPage = () => {
                       setSelectedCategory(prev => prev === cat.value ? null : cat.value)
                     }
                     className={`px-3 py-1 rounded-full border ${selectedCategory === cat.value
-                        ? 'bg-sky-500 text-white'
-                        : 'bg-white text-gray-700 border-gray-300'
+                      ? 'bg-sky-500 text-white'
+                      : 'bg-white text-gray-700 border-gray-300'
                       } hover:bg-blue-100`}
                   >
                     {cat.label}
@@ -163,8 +172,8 @@ const TopicsPage = () => {
                       )
                     }
                     className={`px-3 py-1 rounded-full border ${selectedTags.includes(tag.value)
-                        ? 'bg-cyan-600 text-white'
-                        : 'bg-white text-gray-700 border-gray-300'
+                      ? 'bg-cyan-600 text-white'
+                      : 'bg-white text-gray-700 border-gray-300'
                       } hover:bg-cyan-200`}
                   >
                     {tag.label}
@@ -209,12 +218,12 @@ const TopicsPage = () => {
                 {filteredTopics.map((topic: Topic) => (
                   <div key={topic.id} className="flex flex-col p-4 rounded-2xl shadow-sm justify-between bg-gray-100">
                     <div className="flex flex-col justify-between h-full items-start">
-                      
-                        <div>
+
+                      <div>
                         <h2 className="text-lg font-semibold text-neutral-700">{topic.title}</h2>
                         <p className="text-md text-gray-600 my-2">{topic.description}</p>
-                        </div>
-                        <div>
+                      </div>
+                      <div>
                         <p className="mt-1 bg-sky-100 text-gray-500 px-4 py-1 text-md rounded-full w-fit">{topic.category}</p>
                         {topic.tags && (
                           <div className="flex gap-2 mt-2 flex-wrap">
@@ -225,11 +234,11 @@ const TopicsPage = () => {
                             ))}
                           </div>
                         )}
-                        </div>
-                      
                       </div>
-                      {/* Popover menu or other action buttons */}
-                  
+
+                    </div>
+                    {/* Popover menu or other action buttons */}
+
 
                     {/* Join Button */}
                     <div className="flex w-full justify-end mt-2">

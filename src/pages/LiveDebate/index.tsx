@@ -7,6 +7,7 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { useRouter } from "next/router";
 import Sidebar from "@/components/Sidebar";
 import HomeNavbar from "@/components/HomeNavbar";
+import { MdLiveTv } from "react-icons/md";
 
 const topicOptions = ["All", "Politics", "Technology", "Environment", "Economy", "Education", "Healthcare", "Ethics"];
 const formatOptions = ["All Formats", "Oxford Style", "Lincoln-Douglas", "Parliamentary", "Town Hall"];
@@ -146,12 +147,15 @@ const LiveDebatesPage = () => {
       </div>
 
         <div className="container mx-auto p-6">
+            <div className='flex w-full justify-between my-4'>
+                        <div className="flex  gap-4   text-gray-600">
+                          <span><MdLiveTv  size={30} color='#2B6CB0' /> </span> <h2 className="text-2xl font-medium"> Live Debate</h2>
+          
+                        </div>
+                        
+                      </div>
           <div className="max-w-5xl mx-auto space-y-6">
-            {/* <div className="flex justify-end">
-              <button className="p-4 bg-sky-500 text-white rounded-lg shadow" onClick={() => router.push("/AddTopics")}>
-                Add Topic
-              </button>
-            </div> */}
+           
 
             <ReactSearchAutocomplete
               items={searchItems}

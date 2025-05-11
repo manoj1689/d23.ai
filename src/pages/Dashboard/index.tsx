@@ -5,7 +5,8 @@ import Sidebar from "../../components/Sidebar";
 import { FaBell } from "react-icons/fa";
 import Debate from "./Debate"
 import HomeNavbar from "@/components/HomeNavbar";
-
+import UpcomingDebatesPage from "@/components/UpcomingEvent";
+import AiInsight  from "./AiInsight"
 function Page() {
   // Example search items
   const items = [
@@ -33,9 +34,18 @@ function Page() {
           <HomeNavbar/>
 
         {/* Main Body */}
-        <div className="p-6">
+        <div className="container mx-auto p-6">
          <Debate/>
+         <div className="flex flex-col lg:flex-row gap-4">
+          <div className="w-full lg:w-2/3">
+          <UpcomingDebatesPage/>
+          </div>
+          <div className="w-full lg:w-1/3">
+          <AiInsight/>
+          </div>
         </div>
+        </div>
+        
       </section>
     </div>
   );
