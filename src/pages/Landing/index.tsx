@@ -14,23 +14,41 @@ import Footer from '@/components/LandingFooter'
 
 function index() {
   return (
-    <div >
-        <Navbar/>
-        <Header/>
-       
-        <Formats/>
-        <Stepper/>
-        <Demo/>
-        <Support/>
-        <LiveDebate/>
-        <OnDemand/>
-        <Recording/>
+    <div>
+      <Navbar />
+      <div id="home">
+        <Header />
+      </div>
       
-        <Testimonials/>
-        <ContactSection/>
-        <Footer/>
+      <div id="debate">
+        <Formats />
+        <Stepper />
+        <Demo />
+      </div>
+  
+      <div id="support">
+        <Support />
+      </div>
+  
+      <div id="events">
+        <LiveDebate />
+        <OnDemand />
+        <Recording />
+      </div>
+  
+      <div id="testimonials">
+        <Testimonials />
+      </div>
+  
+      <div id="contact">
+        <ContactSection />
+      </div>
+  
+      <Footer />
     </div>
-  )
+  );
+  
+  
 }
 
 export default index

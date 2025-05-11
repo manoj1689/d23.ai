@@ -7,7 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useDispatch } from 'react-redux';
-import { firebaseLogin } from '../../store/slices/firebaseAuthSlice'; // Adjust path as needed
+import { firebaseLogin,loginWithEmailPassword } from '../../store/slices/firebaseAuthSlice'; // Adjust path as needed
 import { AppDispatch } from "../../store/store";
 
 const LoginPage = () => {
@@ -41,40 +41,44 @@ const LoginPage = () => {
     }
   };
 
-  // ✅ Email/Password Login
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent the default form submission behavior
+
     try {
-      const result = await signInWithEmailAndPassword(auth, email, password);
-      const idToken = await result.user.getIdToken();
-      dispatch(firebaseLogin(idToken));
-      router.push("/Dashboard");
+      // Dispatch the login action and wait for the result
+      const result = await dispatch(
+        loginWithEmailPassword({ email, password })
+      ).unwrap(); // Unwrap the result to handle rejection directly
+
+      console.log("Login successful:", result);
+      // After successful login, redirect to the dashboard
+      router.push('/Dashboard');
     } catch (error) {
-      console.error("Email login failed:", error);
+      console.error('Login failed:', error);
+      // Optionally, show an error message to the user
     }
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-2">Log In to Your Account</h2>
-        <p className="text-center text-gray-600 mb-6">Welcome back! Please enter your details</p>
+        <h2 className="text-xl lg:text-3xl font-semibold italic text-center mb-2">Log In to Your Account</h2>
+        <p className="text-center text-md font-light text-gray-500 mb-6">Welcome back! Please enter your details</p>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handleLogin}>
           <div>
-            <label className="block text-gray-700 text-sm mb-1">Email</label>
+            <label className="text-md block text-gray-600  mb-1">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400"
             />
           </div>
 
           <div>
             <div className="flex justify-between items-center mb-1">
-              <label className="block text-gray-700 text-sm">Password</label>
+              <label className="text-md block text-gray-600  mb-1">Password</label>
               <a href="#" className="text-sm text-blue-500 hover:underline">Forgot Password?</a>
             </div>
             <input
@@ -82,7 +86,7 @@ const LoginPage = () => {
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-40"
             />
           </div>
 
@@ -108,7 +112,7 @@ const LoginPage = () => {
         <div className="space-y-3">
           <button
             onClick={signInWithGoogle}
-            className="w-full flex items-center justify-center border rounded-md py-2 gap-4 hover:bg-gray-100"
+            className="w-full flex items-center justify-center border border-gray-300 text-gray-600 rounded-md py-2 gap-4 bg-gray-50 hover:bg-gray-100"
           >
             <span><img src="./images/social/google.png" alt="google" className="w-8" /></span>
             <span>Continue with Google</span>
@@ -116,18 +120,18 @@ const LoginPage = () => {
 
           <button
             onClick={signInWithFacebook}
-            className="w-full flex items-center justify-center border gap-4 rounded-md py-2 hover:bg-gray-100"
+            className="w-full flex items-center justify-center border border-gray-300 text-gray-600 rounded-md py-2 gap-4 bg-sky-100 hover:bg-sky-200"
           >
             <span><img src="./images/social/facebook.png" alt="facebook" className="w-8" /></span>
             <span>Continue with Facebook</span>
           </button>
         </div>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
+        <p className="text-center text-lg text-gray-600 font-light mt-6">
           Don't have an account?
           <button
             onClick={() => router.push('/SignUp')}
-            className="text-blue-500 hover:underline ml-1"
+            className="text-blue-500 hover:underline ml-1 cursor-pointer"
           >
             Sign Up
           </button>

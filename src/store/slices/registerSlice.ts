@@ -55,8 +55,7 @@ export const registerUser = createAsyncThunk<
 
       const { access_token, refresh_token } = response.data;
 
-      localStorage.setItem('access_token', access_token);
-      localStorage.setItem('refresh_token', refresh_token);
+     
 
       return response.data;
     } catch (error: any) {

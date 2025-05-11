@@ -1,9 +1,15 @@
 import React from 'react'
+import { motion } from "framer-motion";
 import { IoIosArrowForward } from 'react-icons/io'
 
 function Format() {
     return (
-        <div className='flex container mx-auto flex-col items-center text-center py-12 px-4 bg-white'>
+        <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+    >
+   <div id="formats" className='flex container mx-auto flex-col items-center text-center py-12 px-4 bg-white'>
             {/* Tag */}
             <span className='text-xs md:text-sm text-[#4DA0D7] bg-sky-100 px-4 py-2 rounded-full font-normal mb-2'>
                 Flexible Formats
@@ -93,6 +99,8 @@ function Format() {
             </div>
 
         </div>
+    </motion.section>
+     
 
     )
 }

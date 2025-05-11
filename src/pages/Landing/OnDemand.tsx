@@ -1,11 +1,18 @@
 import React from 'react';
+import { motion } from "framer-motion";
 import { FaPlayCircle, FaFolderOpen, FaHighlighter } from 'react-icons/fa';
 import { FiVideo } from "react-icons/fi";
 import { MdOutlineLibraryAdd } from "react-icons/md";
 import { IoTrophyOutline } from "react-icons/io5";
 export default function LiveStreamingSection() {
     return (
-        <section className='bg-gray-50 '>
+        <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.3 }}
+      >
+     <section className='bg-gray-50 '>
             <div className=" container mx-auto py-12 gap-8 px-4 ">
                 {/* Live & On-Demand Debates Section */}
                 <div className="text-center mb-16">
@@ -27,6 +34,15 @@ export default function LiveStreamingSection() {
 
 
                 <div className="grid md:grid-cols-2 gap-6 items-center ">
+                <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+
+            
+    
                     {/* Left: Video Image */}
                     <div className="relative w-full  mx-auto mt-10 rounded-xl overflow-hidden shadow-lg  ">
                         <video
@@ -38,10 +54,16 @@ export default function LiveStreamingSection() {
                         </video>
                     </div>
 
+                    </motion.div>
+     <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
 
-
-                    {/* Right: Info */}
-                    <div className='p-4'>
+   {/* Right: Info */}
+   <div className='p-4'>
                         <h3 className="text-lg md:text-xl lg:text-2xl font-semibold mb-4">YouTube Integration</h3>
                         <ul className="space-y-4">
                             <li className="flex items-start gap-3">
@@ -84,11 +106,17 @@ export default function LiveStreamingSection() {
                             Start Streaming
                         </button>
                     </div>
+          </motion.div>
+                 
 
 
                 </div>
             </div >
         </section>
+
+      </motion.section>
+
+   
 
     );
 }

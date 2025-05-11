@@ -1,32 +1,82 @@
 "use client"
-import React, { useState } from "react";
-import dynamic from 'next/dynamic';
-import Switch from "react-switch";
-import Select, { SingleValue, MultiValue, ActionMeta } from 'react-select';
+
+import { type ChangeEvent, useState, type FormEvent } from "react"
+import { FaStar } from "react-icons/fa"
+import Select, { MultiValue } from "react-select"
+import { useDispatch } from "react-redux"
+import type { AppDispatch } from "../../store/store"
+import { createDebate } from "../../store/slices/debateSlice"
+import Sidebar from "@/components/Sidebar"
+import { useRouter } from 'next/router';
+import { FaArrowLeft, FaBell } from 'react-icons/fa';
 import { FaRegCircle } from "react-icons/fa";
-import DatePicker from "react-datepicker";
-import { FaBell } from "react-icons/fa";
-import { IoArrowBackOutline } from "react-icons/io5";
-import "react-datepicker/dist/react-datepicker.css";
 import { IoIosAdd } from "react-icons/io";
 import { RiDeleteBinLine } from "react-icons/ri";
-import Sidebar from "@/components/Sidebar";
-import PopularTopics from "./PopularTopics";
+import { MdInfoOutline } from "react-icons/md";
+import HomeNavbar from "@/components/HomeNavbar"
+type Opponent = {
+  name: string
+  initials: string
+  wins: number
+  debates: number
+  rating: number
+}
 type Option = {
   value: string;
   label: string;
 };
 
-const categoryOptions: Option[] = [
-  { value: 'academic', label: 'Academic' },
-  { value: 'politics', label: 'Politics' },
-  { value: 'technology', label: 'Technology' },
-];
+type FormErrors = {
+  description?: string
+  category?: string
+  topic?: string
+  difficulty?: string
+  format?: string
+  date?: string
+  time?: string
+  opponent?: string
+}
+
+const categoryOptions = [
+  { value: "Technology", label: "Technology" },
+  { value: "Politics", label: "Politics" },
+  { value: "Environment", label: "Environment" },
+  { value: "Economics", label: "Economics" },
+  { value: "Ethics", label: "Ethics" },
+  { value: "Education", label: "Education" },
+]
+
 const tagOptions: Option[] = [
   { value: 'ai', label: 'AI' },
   { value: 'climate', label: 'Climate' },
   { value: 'education', label: 'Education' },
 ];
+
+const skillOptions = [
+  { value: 'beginner', label: 'Beginner - New to debates' },
+  { value: 'intermediate', label: 'Intermediate - Some experience' },
+  { value: 'advanced', label: 'Advanced - Seasoned debater' },
+];
+
+
+const debateFormats = [
+  {
+    key: 'Oxford Style',
+    title: 'Oxford Style',
+    description: 'Formal debate with proposition and opposition teams',
+  },
+  {
+    key: 'Cross-Examination',
+    title: 'Cross-Examination',
+    description: 'Debaters question each other after presenting arguments',
+  },
+  {
+    key: 'Lincoln-Douglas',
+    title: 'Lincoln-Douglas',
+    description: 'One-on-one format focusing on values and logic',
+  }
+];
+
 const durationOptions: Option[] = [
   { value: '30', label: '30 minutes' },
   { value: '60', label: '1 hour' },
@@ -37,58 +87,51 @@ const timeZoneOptions: Option[] = [
   { value: 'ET', label: 'Eastern Time (UTC-5)' },
   { value: 'CT', label: 'Central Time (UTC-6)' },
 ];
-const skillOptions = [
-  { value: 'beginner', label: 'Beginner - New to topic' },
-  { value: 'intermediate', label: 'Intermediate - Some experience' },
-  { value: 'advanced', label: 'Advanced - Deep understanding' },
-];
-const privacyOptions = [
-  { value: "unlisted", label: "Unlisted - Anyone with the link can join" },
-  { value: "private", label: "Private - Only invited participants can join" },
-  { value: "public", label: "Public - Anyone can search and join" },
-];
-const defaultRules = [
-  "Maintain civility and respect at all times",
-  "Support arguments with credible evidence",
-  "No interruptions during speaking time",
-  "Avoid logical fallacies",
-  "Adhere to time limits for responses",
-];
 
-const CreateDebateForm = () => {
-  const Select = dynamic(() => import('react-select'), { ssr: false });
-  // Basic info
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<Option | null>(null);
+const DebateModal = () => {
+  const dispatch: AppDispatch = useDispatch()
+  const router = useRouter();
+
+  const [loading, setLoading] = useState<boolean>(false)
+  const [topic, setTopic] = useState("")
+  const [description, setDescription] = useState("")
+  const [category, setCategory] = useState("Technology")
+
+  // Use separate state variables instead of combined object
+  const [difficulty, setDifficulty] = useState("Beginner")
+  const [format, setFormat] = useState("Oxford Style")
+  const [date, setDate] = useState("")
+  const [time, setTime] = useState("06:00")
   const [selectedTags, setSelectedTags] = useState<Option[]>([]);
-  //  Debate Format
-  const [format, setFormat] = useState("panel");
-  const [participantLimit, setParticipantLimit] = useState(6);
-  const [skillLevel, setSkillLevel] = useState(skillOptions[1]);
-  const [includeModerator, setIncludeModerator] = useState(true);
-  const [allowQuestions, setAllowQuestions] = useState(true);
-  const [enforceTimed, setEnforceTimed] = useState(false);
-  // schedule 
-  const [startDate, setStartDate] = useState(new Date());
+
+  const [selectedOpponent, setSelectedOpponent] = useState<Opponent | null>(null)
   const [duration, setDuration] = useState<Option | null>(durationOptions[1]);
   const [timeZone, setTimeZone] = useState<Option | null>(timeZoneOptions[1]);
-  const [isRecurring, setIsRecurring] = useState(false);
 
+
+  const [participantLimit, setParticipantLimit] = useState(6);
+  const [selectedSkill, setSelectedSkill] = useState(skillOptions[1]);
   //Topic Configuration
   const [reference, setReference] = useState('');
   const [references, setReferences] = useState<string[]>([]);
-
-  //Privacy Rule
-  const [privacySetting, setPrivacySetting] = useState(privacyOptions[0]);
-  const [moderatorApproval, setModeratorApproval] = useState(true);
-  const [completeProfile, setCompleteProfile] = useState(true);
-  const [identityVerification, setIdentityVerification] = useState(false);
-  const [checkedRules, setCheckedRules] = useState<string[]>([]);
-  const [customRules, setCustomRules] = useState<string[]>([]);
-  const [customRuleInput, setCustomRuleInput] = useState("");
   // Invition options
   const [emails, setEmails] = useState("");
+
+  // Form validation errors
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(e.target.value)
+    if (formSubmitted) {
+      validateField("description", e.target.value)
+    }
+  }
+  const handleTagsChange = (newValue: MultiValue<Option>) => {
+    setSelectedTags([...newValue]);
+  };
+
 
 
   const handleAdd = () => {
@@ -102,513 +145,480 @@ const CreateDebateForm = () => {
     setReferences(references.filter((_, i) => i !== index));
   };
 
-  const handleTagsChange = (newValue: MultiValue<Option>) => {
-    setSelectedTags([...newValue]);
-  };
 
-  const changeLimit = (delta: number) => {
-    setParticipantLimit((prev) => Math.max(1, prev + delta));
-  };
+  // Validation functions
+  const validateField = (field: string, value: string) => {
+    const newErrors = { ...errors }
 
-  const handleRuleToggle = (rule: string) => {
-    setCheckedRules((prev) =>
-      prev.includes(rule) ? prev.filter((r) => r !== rule) : [...prev, rule]
-    );
-  };
-
-  const handleAddCustomRule = () => {
-    if (customRuleInput.trim() && !customRules.includes(customRuleInput.trim())) {
-      setCustomRules([...customRules, customRuleInput.trim()]);
-      setCustomRuleInput("");
+    switch (field) {
+      case "description":
+        if (!value || value.trim() === "") {
+          newErrors.description = "Description is required"
+        } else if (value.length < 10) {
+          newErrors.description = "Description must be at least 10 characters"
+        } else {
+          delete newErrors.description
+        }
+        break
+      case "date":
+        if (!value) {
+          newErrors.date = "Date is required"
+        } else {
+          delete newErrors.date
+        }
+        break
+      case "time":
+        if (!value) {
+          newErrors.time = "Time is required"
+        } else {
+          delete newErrors.time
+        }
+        break
+      case "opponent":
+        if (!value) {
+          newErrors.opponent = "Please select an opponent"
+        } else {
+          delete newErrors.opponent
+        }
+        break
+      default:
+        break
     }
-  };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = {
-      title,
-      description,
-      selectedCategory,
-      tagOptions,
-      skillLevel,
-      format,
-      participantLimit,
-      includeModerator,
-      allowQuestions,
-      enforceTimed,
-      isRecurring,
-      selectedTags,
-      duration,
-      timeZone,
-      startDate,
-      references,
-      privacySetting,
-      moderatorApproval,
-      completeProfile,
-      identityVerification,
-      checkedRules,
-      customRules,
-      emails,
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
-    };
-    console.log("Debate Form Data:", formData);
-  };
+  const validateForm = () => {
+    const newErrors: FormErrors = {}
+
+    if (!description || description.trim() === "") {
+      newErrors.description = "Description is required"
+    } else if (description.length < 10) {
+      newErrors.description = "Description must be at least 10 characters"
+    }
+
+    if (!date) {
+      newErrors.date = "Date is required"
+    }
+
+    if (!time) {
+      newErrors.time = "Time is required"
+    }
+
+    if (!selectedOpponent) {
+      newErrors.opponent = "Please select an opponent"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
+
+    setFormSubmitted(true)
+
+    // Validate form before submission
+    if (!validateForm()) {
+      // Scroll to the first error
+      const firstError = document.querySelector(".error-message")
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" })
+      }
+      return
+    }
+
+    // Create a proper date string for API
+    const scheduledStart = `${date}T${time}:00Z`
+
+    // Calculate end time (90 minutes after start)
+    const [hours, minutes] = time.split(":")
+    const endHours = Number.parseInt(hours) + Math.floor((Number.parseInt(minutes) + 90) / 60)
+    const endMinutes = (Number.parseInt(minutes) + 90) % 60
+    const scheduledEnd = `${date}T${endHours.toString().padStart(2, "0")}:${endMinutes.toString().padStart(2, "0")}:00Z`
+
+    const newDebate = {
+      title: topic || "Untitled Debate",
+      description: description,
+      category: category,
+      format: format,
+      scheduled_start: scheduledStart,
+      scheduled_end: scheduledEnd,
+      topic_id: 1,
+      participant_ids: selectedOpponent ? [1] : [],
+    }
+    // const newDebate = {
+    //   title: 'Robots coming',
+    //   description: 'the risks and benefits of AI.',
+    //   category: 'Technology',
+    //   format: 'oxford',
+    //   scheduled_start: '2025-05-08T18:00:00Z',
+    //   scheduled_end: '2025-05-08T19:30:00Z',
+    //   topic_id: 1,
+    //   participant_ids: [1],
+    // };
+    try {
+      console.log("new debate data", newDebate)
+      setLoading(true)
+      await dispatch(createDebate(newDebate))
+      // Success handling could go here
+      alert("Debate created successfully!")
+      // Reset form after successful submission
+      resetForm()
+    } catch (error) {
+      console.error("Failed to create debate:", error)
+      // Error handling could go here
+      alert("Failed to create debate. Please try again.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const resetForm = () => {
+    setTopic("")
+    setDescription("")
+    setCategory("Technology")
+    setDifficulty("Beginner")
+    setFormat("Oxford Style")
+    setDate("")
+    setTime("")
+    setSelectedOpponent(null)
+    setErrors({})
+    setFormSubmitted(false)
+  }
 
   return (
     <>
       <div>
         <Sidebar />
+
       </div>
-      <div className="container flex w-full justify-between max-lg:mx-auto  lg:ml-64 p-6">
-
-        {/* Search Bar with Autocomplete */}
-        <div className="">
-          <span className="flex gap-4 items-center ml-8">
-            <span><IoArrowBackOutline size={25} /></span> <span className="text-xl font-semibold">Create Debate</span>
-          </span>
-
+      <div className="lg:ml-64 ">
+        <div>
+          <HomeNavbar />
         </div>
 
-        {/* Notification Bell */}
-        <div className="flex items-center space-x-4 ">
-          <button className="relative">
-            <FaBell className="text-gray-600 hover:text-purple-600 " size={28} />
-            {/* Notification Dot */}
-            <span className="absolute top-0 right-0 inline-flex items-center justify-center w-2 h-2 bg-red-500 rounded-full"></span>
-          </button>
-        </div>
-      </div>
-      <section className="p-4">
-        <PopularTopics/>
-      </section>
-      <form onSubmit={handleSubmit} className="container mx-auto lg:ml-64 space-y-8 p-4">
-        {/* Basic Information */}
-        <section className="bg-white shadow rounded-xl p-6">
-          <h2 className="text-lg md:text-xl font-semibold mb-4">Basic Information</h2>
-
-          <label className="block mb-4">
-            <span className="text-md font-normal text-neutral-700">Debate Title*</span>
-            <input
-              type="text"
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Enter a clear, concise title"
-              className="w-full mt-1 border border-gray-300 rounded-md px-3 py-2"
-            />
-
-          </label>
-
-          <label className="block mb-4">
-            <span className="text-md font-normal text-neutral-700">Topic Description*</span>
-            <textarea
-              required
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe the debate topic and key points to be discussed"
-              className="w-full mt-1 border border-gray-300 rounded-md px-3 py-2"
-            />
-          </label>
-
-          <section className="pb-4">
-            <label >
-              <span className="text-md font-normal text-neutral-700">Category</span>
-              <Select
-                className="react-select-container"
-                classNamePrefix="react-select"
-                value={selectedCategory}
-                onChange={(newValue) => setSelectedCategory(newValue)}
-                options={categoryOptions}
-                placeholder="Select a category"
-              />
-            </label>
-
-          </section>
-
-          <label className="pt-12 ">
-            <span className="text-md font-normal text-neutral-700 ">Tags</span>
-            <Select
-              isSearchable
-              isMulti
-              isClearable
-              className="react-select-container"
-              classNamePrefix="react-select"
-              value={selectedTags}
-              onChange={handleTagsChange}
-              options={tagOptions}
-              placeholder="Add tags"
-            />
-          </label>
+        <div className="container mx-auto p-6">
 
 
+          <form onSubmit={handleSubmit} className="space-y-6  bg-white max-w-4xl mx-auto rounded-2xl p-6 ">
+            <section className="bg-gray-100 shadow rounded-xl space-y-4 p-6">
+              <h2 className="text-lg md:text-xl font-semibold mb-4">Basic Information</h2>
 
-        </section>
-
-        {/* Debate Format */}
-
-
-        <section className="bg-white shadow rounded-xl p-6">
-          <h2 className="text-lg md:text-xl font-semibold mb-4">Debate Format</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            {/* Oxford Style */}
-            <button
-              type="button"
-              className={`rounded-md p-4 text-left ${format === "oxford"
-                ? "bg-gradient-to-r from-[#F295BE] to-[#63A7D4] text-white"
-                : "border border-gray-300 "
-                }`}
-              onClick={() => setFormat("oxford")}
-            >
-              <div className="flex gap-4 items-start">
-                <div className="pt-2">
-                  <FaRegCircle size={20} color="gray" />
-                </div>
-                <div>
-                  <h4 className="font-normal text-lg">Oxford Style</h4>
-                  <p className={` text-md rounded-md  text-left ${format === "oxford"
-                    ? " text-white"
-                    : "text-gray-600"
-                    }`}>
-                    Formal debate with proposition and opposition teams
-                  </p>
-                </div>
-              </div>
-            </button>
-
-            {/* Panel Discussion */}
-            <button
-              type="button"
-              className={`rounded-md p-4 text-left ${format === "panel"
-                ? "bg-gradient-to-r from-[#F295BE] to-[#63A7D4] text-white"
-                : "border border-gray-300"
-                }`}
-              onClick={() => setFormat("panel")}
-            >
-              <div className="flex gap-4 items-start">
-                <div className="pt-2">
-                  <FaRegCircle size={20} color="gray" />
-                </div>
-                <div>
-                  <h4 className="font-normal text-lg">Panel Discussion</h4>
-                  <p className={` text-md rounded-md text-left ${format === "panel"
-                    ? " text-white"
-                    : "text-gray-600"
-                    }`}>
-                    Multiple experts discussing various viewpoints
-                  </p>
-                </div>
-              </div>
-            </button>
-
-            {/* Roundtable */}
-            <button
-              type="button"
-              className={`rounded-md p-4 text-left ${format === "roundtable"
-                ? "bg-gradient-to-r from-[#F295BE] to-[#63A7D4] text-white"
-                : "border border-gray-300"
-                }`}
-              onClick={() => setFormat("roundtable")}
-            >
-              <div className="flex gap-4 items-start">
-                <div className="pt-2">
-                  <FaRegCircle size={20} color="gray" />
-                </div>
-                <div>
-                  <h4 className="font-normal text-lg">Roundtable</h4>
-                  <p className={` text-md rounded-md  text-left ${format === "roundtable"
-                    ? " text-white"
-                    : "text-gray-600"
-                    }`}>
-                    Open discussion with equal speaking opportunities
-                  </p>
-                </div>
-              </div>
-            </button>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow space-y-6 ">
-
-            {/* Participant Limit and Skill Level */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <button onClick={() => changeLimit(-1)} className="bg-gray-200 px-2 rounded">-</button>
-                <span className="text-lg font-semibold">{participantLimit}</span>
-                <button onClick={() => changeLimit(1)} className="bg-gray-200 px-2 rounded">+</button>
-                <span className="text-sm text-gray-500 ml-2">participants</span>
+              <div>
+                <label className="block text-md lg:text-lg font-light text-neutral-800 mb-2">
+                  Debate Title  <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter a specific topic..."
+                  value={topic}
+                  onChange={(e) => {
+                    setTopic(e.target.value)
+                  }}
+                  className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#62E9D7]/50"
+                />
               </div>
 
-              <div className="w-full md:w-1/2">
-                <label className="block text-md font-medium mb-1">Skill Level</label>
+
+              <div>
+                <label className="block text-md lg:text-lg font-light text-neutral-800 mb-2">
+                  Description <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="description"
+                  value={description}
+                  placeholder="Describe your topic..."
+                  onChange={handleDescriptionChange}
+                  className={`w-full bg-gray-50 border ${errors.description ? "border-red-500" : "border-gray-200"} rounded-xl px-4 py-2.5 text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#62E9D7]/50`}
+                />
+                {errors.description && <p className="text-red-500 text-sm mt-1 error-message">{errors.description}</p>}
+              </div>
+
+              <div>
+                <label className="block text-md lg:text-lg font-light text-neutral-800 mb-2">Category</label>
                 <Select
-                  options={skillOptions}
-                  value={skillLevel}
-                  onChange={(option) => option && setSkillLevel(option)}
+                  options={categoryOptions}
+                  defaultValue={categoryOptions[0]}
+                  onChange={(option) => {
+                    setCategory(option?.value || "Technology")
+                  }}
                 />
               </div>
-            </div>
-
-            {/* Panel Structure Switches */}
-            <div className="bg-gray-100 p-4 rounded-lg space-y-3">
-              <h3 className="text-sm font-medium text-gray-700">Panel Structure</h3>
-
-              <div className="flex items-center justify-between">
-                <span>Include Moderator</span>
-                <Switch
-                  onChange={setIncludeModerator}
-                  checked={includeModerator}
-                  onColor="#a78bfa"
+              <div>
+                <label className="block text-md lg:text-lg font-light text-neutral-800 mb-2">Tags</label>
+                <Select
+                  isSearchable
+                  isMulti
+                  isClearable
+                  className="react-select-container"
+                  classNamePrefix="react-select"
+                  value={selectedTags}
+                  onChange={handleTagsChange}
+                  options={tagOptions}
+                  placeholder="Add tags"
                 />
+
               </div>
 
-              <div className="flex items-center justify-between">
-                <span>Allow Audience Questions</span>
-                <Switch
-                  onChange={setAllowQuestions}
-                  checked={allowQuestions}
-                  onColor="#f472b6"
-                />
+
+            </section>
+            <section className="bg-white shadow rounded-xl space-y-4 p-6">
+              <h2 className="text-lg md:text-xl font-semibold mb-4">Debate Format</h2>
+              <div>
+                <label className="block text-md lg:text-lg font-light text-neutral-800 mb-2">
+                  Format Type
+                </label>
+                <div className="flex flex-col md:flex-row gap-4  ">
+                  {debateFormats.map((formatOption) => (
+                    <button
+                      key={formatOption.key}
+                      type="button"
+                      onClick={() => setFormat(formatOption.key)}
+                      className={`w-full p-4  items-start rounded-xl text-left  transition-all ${format === formatOption.key
+                        ? 'bg-gradient-to-r from-[#63A7D4] to-[#F295BE] text-white '
+                        : 'bg-white text-gray-600 border-gray-200 border-2 hover:border-gray-400'
+                        }`}
+                    >
+                      <div className="flex gap-4 items-start">
+                        <div className="pt-2">
+                          <FaRegCircle size={20} color="gray" />
+                        </div>
+                        <div>
+
+                          <div className="font-semibold text-md ">{formatOption.title}</div>
+                          <div className={` text-md rounded-md  text-left ${format === formatOption.key
+                            ? " text-white"
+                            : "text-gray-600"
+                            }`}>{formatOption.description}</div>
+                        </div>
+                      </div>
+
+                    </button>
+                  ))}
+                </div>
               </div>
+              <div className="flex w-full flex-col md:flex-row gap-6">
+                {/* Participant Limit */}
+                <div className="w-full flex gap-4 items-end md:w-1/2 ">
+                  <div className="flex-flex-col  ">
+                    <label className="block text-lg font-light text-gray-800 mb-1">
+                      Participant Limit
+                    </label>
+                    <div className="flex items-center border border-gray-300 rounded-md overflow-hidden w-fit">
+                      <button
+                        type="button"
+                        onClick={() => setParticipantLimit(Math.max(1, participantLimit - 1))}
+                        className="px-4 py-2 border-r border-gray-400  text-gray-600 hover:bg-gray-100"
+                      >
+                        −
+                      </button>
+                      <span className="px-4 py-1 text-gray-800 font-lg font-semibold">{participantLimit}</span>
+                      <button
+                        type="button"
+                        onClick={() => setParticipantLimit(participantLimit + 1)}
+                        className="px-4 py-2 border-l border-gray-400  text-gray-600 hover:bg-gray-100"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div >
+                    <span className="text-sm text-gray-500 ml-1">participants</span>
+                  </div>
 
-              <div className="flex items-center justify-between">
-                <span>Enforce Timed Responses</span>
-                <Switch
-                  onChange={setEnforceTimed}
-                  checked={enforceTimed}
-                  onColor="#60a5fa"
-                />
+                </div>
+
+                {/* Skill Level Dropdown */}
+                <div className="w-full md:w-1/2">
+                  <label className="block text-lg font-light text-gray-800 mb-1">
+                    Skill Level
+                  </label>
+                  <Select
+                    options={skillOptions}
+                    value={selectedSkill}
+                    onChange={(option) => setSelectedSkill(option!)}
+                    className="text-md"
+                    styles={{
+                      control: (base) => ({
+                        ...base,
+                        borderColor: '#D1D5DB', // gray-300
+                        boxShadow: 'none',
+                        '&:hover': { borderColor: '#9CA3AF' }, // gray-400
+                      }),
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </section>
+
+            <section className="bg-white shadow rounded-xl space-y-4 p-6">
+              <h2 className="text-lg md:text-xl font-semibold mb-4">Schedule</h2>
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="w-full md:w-1/2">
+                  <label className="block text-lg font-light text-gray-800 mb-1">
+                    Date <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    value={date}
+                    onChange={(e) => {
+                      setDate(e.target.value)
+                      if (formSubmitted) {
+                        validateField("date", e.target.value)
+                      }
+                    }}
+                    className={`w-full bg-gray-50 border ${errors.date ? "border-red-500" : "border-gray-200"} rounded-xl px-4 py-2.5 text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#62E9D7]/50`}
+                  />
+                  {errors.date && <p className="text-red-500 text-sm mt-1 error-message">{errors.date}</p>}
+                </div>
+                <div className="w-full md:w-1/2">
+                  <label className="block text-lg font-light text-gray-800 mb-1">
+                    Time <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="time"
+                    value={time}
+                    onChange={(e) => {
+                      setTime(e.target.value)
+                      if (formSubmitted) {
+                        validateField("time", e.target.value)
+                      }
+                    }}
+                    className={`w-full bg-gray-50 border ${errors.time ? "border-red-500" : "border-gray-200"} rounded-xl px-4 py-2.5 text-gray-800 focus:outline-none focus:ring-1 focus:ring-[#62E9D7]/50`}
+                  />
+                  {errors.time && <p className="text-red-500 text-sm mt-1 error-message">{errors.time}</p>}
+                </div>
+
+              </div>
+              <div className="flex w-full flex-col md:flex-row gap-4">
+                <div className="w-full md:w-1/2">
+
+                  <span className="block text-lg font-light text-gray-800 mb-1">Debate Duration</span>
+                  <Select
+                    options={durationOptions}
+                    value={duration}
+                    onChange={(newValue) => setDuration(newValue)}
 
 
-        {/* Schedule */}
-        <section className="bg-white shadow rounded-xl p-6">
-          <h2 className="text-lg md:text-xl font-semibold mb-4">Schedule</h2>
+                  />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <label>
+                </div>
 
-              <span className="flex flex-col gap-2">
-                <span className="text-sm font-medium">Date*</span>
-                <span className="flex gap-4 items-center">
-                  <DatePicker selected={startDate} onChange={(date: any) => setStartDate(date)} className=" px-3 py-2 outline-none focus:ring-0 border shadow-none rounded-md border-gray-300 w-auto"
-                    calendarClassName="rounded-xl" />
-                </span>
+                <div className="w-full md:w-1/2">
 
-              </span>
-            </label>
+                  <span className="block text-lg font-light text-gray-800 mb-1">Time Zone</span>
+                  <Select
+                    options={timeZoneOptions}
+                    value={timeZone}
+                    onChange={(newValue) => setTimeZone(newValue)}
 
 
+                  />
 
-            <label>
-              <span className="text-sm font-medium">Time*</span>
-              <input type="time" required className="w-full mt-1 border border-gray-300 rounded-md px-3 py-2" />
-            </label>
-          </div>
+                </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label>
-              <span className="text-sm font-medium">Debate Duration</span>
-              <Select
-                options={durationOptions}
-                value={duration}
-                onChange={(newValue) => setDuration(newValue)}
+              </div>
+            </section>
 
-                className="mt-1"
-              />
-            </label>
+            {/* Topic Configuration */}
+            <section className="bg-white shadow rounded-xl p-6">
+              <h2 className="text-lg md:text-xl font-semibold mb-4">Topic Configuration</h2>
 
-            <label>
-              <span className="text-sm font-medium">Time Zone</span>
-              <Select
-                options={timeZoneOptions}
-                value={timeZone}
-                onChange={(newValue) => setTimeZone(newValue)}
-
-                className="mt-1"
-              />
-            </label>
-          </div>
-
-          <div className="flex items-center mt-4 gap-2">
-            <input
-              type="checkbox"
-              checked={isRecurring}
-              onChange={(e) => setIsRecurring(e.target.checked)}
-              className="h-4 w-4"
-            />
-            <span className="text-sm">Make this a recurring debate</span>
-          </div>
-        </section>
-
-        {/* Topic Configuration */}
-        <section className="bg-white shadow rounded-xl p-6">
-          <h2 className="text-lg md:text-xl font-semibold mb-4">Topic Configuration</h2>
-
-          <label>
-            <span className="text-sm font-medium">References (Optional)</span>
-            <div className="flex  mt-1">
-              <input
-                type="url"
-                placeholder="https://example.com/article-url"
-                className="flex-1 border border-gray-300 rounded-l-md px-3 py-2"
-                value={reference}
-                onChange={(e) => setReference(e.target.value)}
-              />
-              <button
-                type="button"
-                onClick={handleAdd}
-                className="bg-gray-200 text-white px-4 py-2 border border-gray-300 rounded-r-md hover:bg-gray-300 "
-              >
-                <IoIosAdd size={25} color="gray" />
-              </button>
-            </div>
-          </label>
-
-          {references.length > 0 && (
-            <ul className="mt-4 space-y-2">
-              {references.map((ref, index) => (
-                <li
-                  key={index}
-                  className="flex justify-between items-center bg-gray-100 px-4 py-2 rounded-md"
-                >
-                  <a href={ref} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">
-                    {ref}
-                  </a>
+              <label>
+                <span className="text-md font-medium text-gray-600">References (Optional)</span>
+                <div className="flex  mt-1">
+                  <input
+                    type="url"
+                    placeholder="https://example.com/article-url"
+                    className="flex-1 border border-gray-300 rounded-l-md px-3 py-2"
+                    value={reference}
+                    onChange={(e) => setReference(e.target.value)}
+                  />
                   <button
                     type="button"
-                    onClick={() => handleDelete(index)}
-                    className="text-red-400 "
+                    onClick={handleAdd}
+                    className="bg-gray-200 text-white px-4 py-2 border border-gray-300 rounded-r-md hover:bg-gray-300 "
                   >
-                    <RiDeleteBinLine size={24} />
-
+                    <IoIosAdd size={25} color="gray" />
                   </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-        <section className="bg-white p-6 rounded-xl shadow space-y-4">
-          <h2 className="text-xl font-semibold">Privacy & Rules</h2>
-
-          <div>
-            <label className="text-sm font-medium mb-1 block">Privacy Setting</label>
-            <Select
-              value={privacySetting}
-              onChange={(value) => setPrivacySetting(value!)}
-              options={privacyOptions}
-            />
-          </div>
-
-          <div className="space-y-3">
-            <label className="flex items-center justify-between">
-              <span>Require moderator approval</span>
-              <Switch
-                checked={moderatorApproval}
-                onChange={setModeratorApproval}
-                onColor="#f295be"
-                offColor="#ccc"
-              />
-            </label>
-
-            <label className="flex items-center justify-between">
-              <span>Require complete profile</span>
-              <Switch
-                checked={completeProfile}
-                onChange={setCompleteProfile}
-                onColor="#f295be"
-                offColor="#ccc"
-              />
-            </label>
-
-            <label className="flex items-center justify-between">
-              <span>Require identity verification</span>
-              <Switch
-                checked={identityVerification}
-                onChange={setIdentityVerification}
-                onColor="#f295be"
-                offColor="#ccc"
-              />
-            </label>
-          </div>
-
-          <div>
-            <h3 className="text-md font-semibold mb-2">Debate Rules</h3>
-            {defaultRules.map((rule) => (
-              <label key={rule} className="block mb-2">
-                <input
-                  type="checkbox"
-                  checked={checkedRules.includes(rule)}
-                  onChange={() => handleRuleToggle(rule)}
-                  className="mr-2"
-                />
-                {rule}
+                </div>
               </label>
-            ))}
-            {customRules.map((rule) => (
-              <label key={rule} className="block mb-2 text-blue-600">
+
+              {references.length > 0 && (
+                <ul className="mt-4 space-y-2">
+                  {references.map((ref, index) => (
+                    <li
+                      key={index}
+                      className="flex justify-between items-center bg-gray-100 px-4 py-2 rounded-md"
+                    >
+                      <a href={ref} target="_blank" rel="noopener noreferrer" className="text-blue-700 underline">
+                        {ref}
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => handleDelete(index)}
+                        className="text-red-400 "
+                      >
+                        <RiDeleteBinLine size={24} />
+
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+
+            <section className="bg-white p-6 rounded-xl shadow space-y-4">
+              <h2 className="text-xl font-semibold">Invitation Options</h2>
+
+              <div>
+                <label className="block text-lg font-light text-gray-800 mb-1">Invite by Email</label>
                 <input
-                  type="checkbox"
-                  checked={checkedRules.includes(rule)}
-                  onChange={() => handleRuleToggle(rule)}
-                  className="mr-2"
+                  type="text"
+                  placeholder="Enter email addresses separated by commas"
+                  value={emails}
+                  onChange={(e) => setEmails(e.target.value)}
+                  className="w-full border border-gray-300 mt-1 px-3 py-3 rounded-md"
                 />
-                {rule}
-              </label>
-            ))}
-            <div className="mt-2 flex gap-2">
-              <input
-                type="text"
-                placeholder="Add custom rule"
-                value={customRuleInput}
-                onChange={(e) => setCustomRuleInput(e.target.value)}
-                className="border px-3 py-1 rounded-md flex-1"
-              />
+              </div>
+
+              <div className="flex  flex-col md:flex-row w-full gap-2">
+                <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md w-full">Copy Invite Link</button>
+                <button className="bg-[#2B6CB0] text-white px-4 py-2 rounded-md w-full ">Email Invitations</button>
+                <button className="bg-blue-100 text-[#2B6CB0] px-4 py-2 rounded-md w-full">Share to Community</button>
+              </div>
+
+              <div className="flex gap-4 bg-blue-50 text-[#2B6CB0] px-4 py-2 rounded-md text-md font-light">
+                <span><MdInfoOutline size={20} /></span> Invitations will be sent after the debate is created. Participants will receive an email with a link to join.
+              </div>
+            </section>
+
+
+
+            <div className="flex gap-4">
+              <button
+                type="submit"
+                disabled={loading}
+                className="flex-1 bg-gradient-to-r from-[#63A7D4] to-[#F295BE] py-3 rounded-xl text-white font-light hover:scale-105 transition-all "
+              >
+                {loading ? "Submitting..." : "Create Debate"}
+              </button>
+
               <button
                 type="button"
-                onClick={handleAddCustomRule}
-                className="text-blue-600 text-sm"
+                onClick={resetForm}
+                className="px-4 bg-gray-200 text-gray-800 py-3 rounded-xl hover:bg-gray-300 transition-all font-medium"
               >
-                + Add
+                Reset
               </button>
             </div>
-          </div>
-        </section>
-
-        <section className="bg-white p-6 rounded-xl shadow space-y-4">
-          <h2 className="text-xl font-semibold">Invitation Options</h2>
-
-          <div>
-            <label className="text-md font-medium">Invite by Email</label>
-            <input
-              type="text"
-              placeholder="Enter email addresses separated by commas"
-              value={emails}
-              onChange={(e) => setEmails(e.target.value)}
-              className="w-full border mt-1 px-3 py-2 rounded-md"
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md">Copy Invite Link</button>
-            <button className="bg-[#2B6CB0] text-white px-4 py-2 rounded-md">Email Invitations</button>
-            <button className="bg-blue-100 text-[#2B6CB0] px-4 py-2 rounded-md">Share to Community</button>
-          </div>
-
-          <div className="bg-blue-50 text-[#2B6CB0] px-4 py-2 rounded-md text-md font-light">
-            <strong>ℹ️</strong> Invitations will be sent after the debate is created. Participants will receive an email with a link to join.
-          </div>
-        </section>
-        <div className="text-center">
-          <button type="submit" className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">
-            Create Debate
-          </button>
+          </form>
         </div>
-      </form>
+      </div>
+
     </>
+  )
+}
 
-  );
-};
-
-export default CreateDebateForm;
+export default DebateModal

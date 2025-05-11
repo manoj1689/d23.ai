@@ -1,0 +1,283 @@
+[
+    {
+      "title": "Social Media Regulation",
+      "description": "Should governments impose stricter regulations on social media platforms?",
+      "topic": "Politics",
+      "format": "Oxford Style",
+      "image": "/images/recordings/image1.png",
+      "viewers": 87,
+      "timeInfo": "Live for 32 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/10.jpg",
+        "https://randomuser.me/api/portraits/women/11.jpg"
+      ]
+    },
+    {
+      "title": "Universal Healthcare Rights",
+      "description": "Is access to universal healthcare a fundamental right?",
+      "topic": "Healthcare",
+      "format": "Lincoln-Douglas",
+      "image": "/images/recordings/image2.png",
+      "viewers": 124,
+      "timeInfo": "Live for 47 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/12.jpg",
+        "https://randomuser.me/api/portraits/women/13.jpg"
+      ]
+    },
+    {
+      "title": "Cryptocurrency Regulation",
+      "description": "Should decentralized finance be regulated like traditional banks to ensure safety and fairness?",
+      "topic": "Economy",
+      "format": "Public Forum",
+      "image": "/images/recordings/image3.png",
+      "viewers": 65,
+      "timeInfo": "Live for 15 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/14.jpg",
+        "https://randomuser.me/api/portraits/women/15.jpg"
+      ]
+    },
+    {
+      "title": "Online Education vs Traditional",
+      "description": "Is online education more effective than traditional classroom learning?",
+      "topic": "Education",
+      "format": "Parliamentary",
+      "image": "/images/recordings/image4.png",
+      "viewers": 102,
+      "timeInfo": "Live for 25 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/women/16.jpg",
+        "https://randomuser.me/api/portraits/men/17.jpg"
+      ]
+    },
+    {
+      "title": "AI in Education",
+      "description": "How should AI tools be integrated into classrooms?",
+      "topic": "Technology",
+      "format": "Oxford Style",
+      "image": "/images/recordings/image3.png",
+      "viewers": 12,
+      "timeInfo": "Starts in 2 hours",
+      "status": "upcoming",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/21.jpg",
+        "https://randomuser.me/api/portraits/women/22.jpg"
+      ]
+    },
+    {
+      "title": "Climate Policy Reform",
+      "description": "What climate policies are most effective today?",
+      "topic": "Environment",
+      "format": "Parliamentary",
+      "image": "/images/recordings/image1.png",
+      "viewers": 8,
+      "timeInfo": "Starts in 3 hours",
+      "status": "upcoming",
+      "speakers": [
+        "https://randomuser.me/api/portraits/women/31.jpg",
+        "https://randomuser.me/api/portraits/men/32.jpg"
+      ]
+    },
+    {
+      "title": "Remote Work vs. Office Work",
+      "description": "Which work model is better for productivity?",
+      "topic": "Economy",
+      "format": "Lincoln-Douglas",
+      "image": "/images/recordings/image2.png",
+      "viewers": 340,
+      "timeInfo": "Ended 1 day ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/women/41.jpg",
+        "https://randomuser.me/api/portraits/men/42.jpg"
+      ]
+    },
+    {
+      "title": "Space Travel for Civilians",
+      "description": "Is commercial space travel worth the investment?",
+      "topic": "Technology",
+      "format": "Parliamentary",
+      "image": "/images/recordings/image4.png",
+      "viewers": 412,
+      "timeInfo": "Ended 2 days ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/51.jpg",
+        "https://randomuser.me/api/portraits/women/52.jpg"
+      ]
+    },
+    {
+      "title": "Free Speech on Campus",
+      "description": "Should universities have limits on free speech?",
+      "topic": "Ethics",
+      "format": "Town Hall",
+      "image": "/images/recordings/image1.png",
+      "viewers": 91,
+      "timeInfo": "Live for 10 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/61.jpg",
+        "https://randomuser.me/api/portraits/women/62.jpg"
+      ]
+    },
+    {
+      "title": "Renewable Energy Mandates",
+      "description": "Should governments mandate a transition to renewable energy?",
+      "topic": "Environment",
+      "format": "Public Forum",
+      "image": "/images/recordings/image2.png",
+      "viewers": 198,
+      "timeInfo": "Ended 5 hours ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/women/63.jpg",
+        "https://randomuser.me/api/portraits/men/64.jpg"
+      ]
+    },
+    {
+      "title": "Universal Basic Income",
+      "description": "Can UBI solve poverty in developed nations?",
+      "topic": "Economy",
+      "format": "Oxford Style",
+      "image": "/images/recordings/image3.png",
+      "viewers": 255,
+      "timeInfo": "Starts in 1 hour",
+      "status": "upcoming",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/65.jpg",
+        "https://randomuser.me/api/portraits/women/66.jpg"
+      ]
+    },
+    {
+      "title": "Vaccination Mandates",
+      "description": "Should vaccines be mandatory for public health?",
+      "topic": "Healthcare",
+      "format": "Parliamentary",
+      "image": "/images/recordings/image4.png",
+      "viewers": 144,
+      "timeInfo": "Ended 3 days ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/67.jpg",
+        "https://randomuser.me/api/portraits/women/68.jpg"
+      ]
+    },
+    {
+      "title": "Regulating AI Safety",
+      "description": "Do we need global regulation for artificial intelligence?",
+      "topic": "Technology",
+      "format": "Lincoln-Douglas",
+      "image": "/images/recordings/image1.png",
+      "viewers": 325,
+      "timeInfo": "Live for 5 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/69.jpg",
+        "https://randomuser.me/api/portraits/women/70.jpg"
+      ]
+    },
+    {
+      "title": "Privacy in the Digital Age",
+      "description": "Is personal privacy dead in the modern era?",
+      "topic": "Ethics",
+      "format": "Town Hall",
+      "image": "/images/recordings/image2.png",
+      "viewers": 57,
+      "timeInfo": "Starts in 5 hours",
+      "status": "upcoming",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/71.jpg",
+        "https://randomuser.me/api/portraits/women/72.jpg"
+      ]
+    },
+    {
+      "title": "Gender Equality in Sports",
+      "description": "Should there be equal pay in all professional sports?",
+      "topic": "Ethics",
+      "format": "Public Forum",
+      "image": "/images/recordings/image3.png",
+      "viewers": 77,
+      "timeInfo": "Ended 4 days ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/women/73.jpg",
+        "https://randomuser.me/api/portraits/men/74.jpg"
+      ]
+    },
+    {
+      "title": "Taxation on the Wealthy",
+      "description": "Should ultra-rich individuals be taxed more heavily?",
+      "topic": "Politics",
+      "format": "Oxford Style",
+      "image": "/images/recordings/image4.png",
+      "viewers": 199,
+      "timeInfo": "Live for 18 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/75.jpg",
+        "https://randomuser.me/api/portraits/women/76.jpg"
+      ]
+    },
+    {
+      "title": "Ban on Single-Use Plastics",
+      "description": "Should governments ban single-use plastics completely?",
+      "topic": "Environment",
+      "format": "Town Hall",
+      "image": "/images/recordings/image1.png",
+      "viewers": 110,
+      "timeInfo": "Ended 8 hours ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/77.jpg",
+        "https://randomuser.me/api/portraits/women/78.jpg"
+      ]
+    },
+    {
+      "title": "College Tuition-Free?",
+      "description": "Should higher education be free for all?",
+      "topic": "Education",
+      "format": "Lincoln-Douglas",
+      "image": "/images/recordings/image2.png",
+      "viewers": 173,
+      "timeInfo": "Starts in 30 minutes",
+      "status": "upcoming",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/79.jpg",
+        "https://randomuser.me/api/portraits/women/80.jpg"
+      ]
+    },
+    {
+      "title": "Data Ownership by Individuals",
+      "description": "Should people own the data they generate online?",
+      "topic": "Technology",
+      "format": "Oxford Style",
+      "image": "/images/recordings/image3.png",
+      "viewers": 210,
+      "timeInfo": "Live for 20 minutes",
+      "status": "live",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/81.jpg",
+        "https://randomuser.me/api/portraits/women/82.jpg"
+      ]
+    },
+    {
+      "title": "Meat Tax for Sustainability",
+      "description": "Should meat consumption be taxed to address climate change?",
+      "topic": "Environment",
+      "format": "Public Forum",
+      "image": "/images/recordings/image4.png",
+      "viewers": 134,
+      "timeInfo": "Ended 7 days ago",
+      "status": "ended",
+      "speakers": [
+        "https://randomuser.me/api/portraits/men/83.jpg",
+        "https://randomuser.me/api/portraits/women/84.jpg"
+      ]
+    }
+  ]
+  

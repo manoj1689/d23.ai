@@ -20,6 +20,7 @@ const responsive = {
 
 const ImageCarouselPage = () => {
   return (
+    
     <div className="w-full flex items-center justify-center  px-4">
       
       <div className="w-full ">

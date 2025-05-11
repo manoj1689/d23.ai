@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { store } from '../store/store'; // adjust the path to your store
 
-// Set up the base URL for the API
 const baseURL = 'http://127.0.0.1:8000';
 
 const axiosApi = axios.create({
@@ -10,13 +10,16 @@ const axiosApi = axios.create({
   },
 });
 
-// Function to dynamically set Authorization header
-export const setAuthToken = (token: string | null) => {
-  if (token) {
-    axiosApi.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  } else {
-    delete axiosApi.defaults.headers.common['Authorization'];
-  }
-};
+// ✅ Automatically add token from Redux store to every request
+axiosApi.interceptors.request.use(
+  (config) => {
+    const token = store.getState().firebaseAuth.token;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export default axiosApi;

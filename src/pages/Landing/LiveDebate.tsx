@@ -1,4 +1,5 @@
 "use client"
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { MdOutlineVideoCameraFront } from "react-icons/md";
 export default function ExploreDebatesPage() {
@@ -13,7 +14,7 @@ export default function ExploreDebatesPage() {
           : pastDebates;
 
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div id="events" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {list.map((debate, idx) => (
         <div key={idx} className="bg-white rounded-2xl shadow-md overflow-hidden flex flex-col h-full">
           <div className="relative">
@@ -64,6 +65,12 @@ export default function ExploreDebatesPage() {
   };
 
   return (
+    <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true, amount: 0.3 }}
+  >
     <section className="bg-white  py-12 px-4 md:px-12 ">
       {/* Top Right Decoration */}
 
@@ -120,6 +127,9 @@ export default function ExploreDebatesPage() {
 
       </div>
     </section>
+
+  </motion.div>
+
   );
 }
 

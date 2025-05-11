@@ -1,0 +1,9 @@
+.sx-react-calendar-wrapper  {
+    
+    height: 900px; /* Increased from 800px */
+    max-height: 90vh;
+   
+    line-height: 1.2;
+  }
+  
+

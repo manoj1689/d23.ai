@@ -1,0 +1,20 @@
+/* Custom modal style */
+.customModal {
+  background: transparent;
+  border-radius: 10px;
+  padding: 12px; /* Remove padding */
+  min-width: 300px;
+  width: 100%;
+  margin: auto;
+  box-shadow: none;
+  background-color: white
+}
+
+/* Custom close button */
+.customCloseButton {
+  color: white!important;
+  top: 10px !important;
+  right: 10px !important;
+  
+}
+

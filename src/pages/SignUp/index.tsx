@@ -2,9 +2,8 @@
 
 import type React from "react"
 import { useState } from "react"
-import { Stepper, Step } from "react-form-stepper"
 import ReactSwitch from "react-switch"
-import { MdPunchClock } from "react-icons/md"
+import { MdOutlineInterests, MdOutlineManageAccounts, MdOutlineSmartToy } from "react-icons/md";
 import { CgSmartHomeWashMachine } from "react-icons/cg"
 import { IoBarChartSharp } from "react-icons/io5"
 import { MdSecurity } from "react-icons/md"
@@ -16,6 +15,25 @@ import { firebaseLogin } from "../../store/slices/firebaseAuthSlice"
 import { registerUser } from "../../store/slices/registerSlice"
 import type { AppDispatch } from "../../store/store"
 import { useRouter } from "next/navigation"
+import Stepper from "@/components/stepper"
+import Select from 'react-select';
+import { IoSettingsOutline } from "react-icons/io5";
+import { CiGlobe } from "react-icons/ci";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { FaCheck } from "react-icons/fa";
+// Define type for the option structure
+interface Option {
+  value: string;
+  label: string;
+}
+const timezoneOptions = [
+  { value: 'America/New_York', label: 'America/New_York (UTC-04:00)' },
+  { value: 'America/Los_Angeles', label: 'America/Los_Angeles (UTC-07:00)' },
+  { value: 'Europe/London', label: 'Europe/London (UTC+01:00)' },
+  { value: 'Asia/Tokyo', label: 'Asia/Tokyo (UTC+09:00)' },
+  { value: 'Asia/Kolkata', label: 'Asia/Kolkata (UTC+05:30)' },
+  { value: 'Australia/Sydney', label: 'Australia/Sydney (UTC+10:00)' }
+];
 
 const SignupStepper = () => {
   const router = useRouter()
@@ -56,6 +74,12 @@ const SignupStepper = () => {
       [name]: value,
     })
   }
+
+  const handleChange = (selectedOption: any) => {
+    handleInputChange({
+      target: { name: 'timezone', value: selectedOption.value },
+    });
+  };
 
   // Handle checkbox changes
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -224,88 +248,95 @@ const SignupStepper = () => {
     switch (step) {
       case 0:
         return (
-          <div className="space-y-8 max-w-md mx-auto p-6 border rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4 text-center">Create Your Account</h2>
-            <p className="text-center text-sm mb-6">Start your 14-day free trial, no credit card required</p>
+          <div className="space-y-2 max-w-lg mx-auto rounded">
+            <h2 className="text-2xl font-bold my-4 italic text-neutral-800 text-center">Create Your Account</h2>
+            <p className="text-center font-light text-gray-600 text-md mb-4">Start your 14-day free trial, no credit card required</p>
 
             <div className="space-y-3">
               <button
                 onClick={signInWithGoogle}
-                className="w-full flex items-center justify-center border rounded-md py-2 gap-4 hover:bg-gray-100"
+                className="w-full flex items-center justify-center rounded-md py-2 gap-4 bg-[#FFD7D7] hover:bg-[#fac8c8]"
               >
                 <span>
                   <img src="./images/social/google.png" alt="google" className="w-8" />
                 </span>
-                <span>Continue with Google</span>
+                <span className="text-neutral-600">Continue with Google</span>
               </button>
 
               <button
                 onClick={signInWithFacebook}
-                className="w-full flex items-center justify-center border gap-4 rounded-md py-2 hover:bg-gray-100"
+                className="w-full flex items-center justify-center gap-4 rounded-md py-2 bg-sky-100 hover:bg-sky-200"
               >
                 <span>
                   <img src="./images/social/facebook.png" alt="facebook" className="w-8" />
                 </span>
-                <span>Continue with Facebook</span>
+                <span className="text-neutral-600">Continue with Facebook</span>
               </button>
             </div>
 
-            <div className="text-center mb-6">
-              <span className="text-sm text-gray-600">or</span>
+            <div className="flex items-center justify-center my-6">
+              <div className="flex-grow border-t border-gray-300"></div>
+              <span className="px-4 text-sm text-gray-400">or</span>
+              <div className="flex-grow border-t border-gray-300"></div>
             </div>
+
 
             <div className="space-y-4">
               <div>
+                <label htmlFor="" className="font-normal text-gray-600 ">Full Name*</label>
                 <input
                   type="text"
                   name="full_name"
                   value={formData.full_name}
                   onChange={handleInputChange}
-                  placeholder="Full Name"
-                  className={`w-full p-3 border rounded ${errors.full_name ? "border-red-500" : ""}`}
+                  placeholder="Ex. John Smith"
+                  className={`w-full p-3 border border-gray-300 rounded ${errors.full_name ? "border-red-500" : ""}`}
                 />
                 {errors.full_name && <p className="text-red-500 text-xs mt-1">{errors.full_name}</p>}
               </div>
 
               <div>
+                <label htmlFor="" className="font-normal text-gray-600 ">Email*</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="Email Address"
-                  className={`w-full p-3 border rounded ${errors.email ? "border-red-500" : ""}`}
+                  placeholder="Ex. example@domain.com"
+                  className={`w-full p-3 border border-gray-300 rounded ${errors.email ? "border-red-500" : ""}`}
                 />
                 {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
 
               <div>
+                <label htmlFor="" className="font-normal text-gray-600 ">Password*</label>
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
                   placeholder="Password"
-                  className={`w-full p-3 border rounded ${errors.password ? "border-red-500" : ""}`}
+                  className={`w-full p-3 border border-gray-300 rounded ${errors.password ? "border-red-500" : ""}`}
                   minLength={8}
                 />
                 {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
               </div>
 
               <div>
+                <label htmlFor="" className="font-normal text-gray-600 ">Confirm Password*</label>
                 <input
                   type="password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="Confirm Password"
-                  className={`w-full p-3 border rounded ${errors.confirmPassword ? "border-red-500" : ""}`}
+                  className={`w-full p-3 border border-gray-300 rounded ${errors.confirmPassword ? "border-red-500" : ""}`}
                 />
                 {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>}
               </div>
             </div>
 
-            <div className="flex items-center mb-6">
+            <div className="flex items-center mt-4">
               <input
                 type="checkbox"
                 name="agreeToTerms"
@@ -313,42 +344,49 @@ const SignupStepper = () => {
                 onChange={handleCheckboxChange}
                 className={`mr-2 ${errors.terms ? "border-red-500" : ""}`}
               />
-              <label className="text-sm text-gray-700">
+              <label className="text-md font-light text-gray-600">
                 I agree to the{" "}
-                <a href="#" className="text-blue-500">
+                <a
+                  href="#"
+                  className="bg-gradient-to-r from-[#63A7D4] to-[#F295BE] bg-clip-text text-transparent font-medium"
+                >
                   Terms of Service
                 </a>{" "}
                 and{" "}
-                <a href="#" className="text-blue-500">
+                <a
+                  href="#"
+                  className="bg-gradient-to-r from-[#63A7D4] to-[#F295BE] bg-clip-text text-transparent font-medium"
+                >
                   Privacy Policy
                 </a>
               </label>
+
             </div>
             {errors.terms && <p className="text-red-500 text-xs mt-1">{errors.terms}</p>}
 
-            <div className="flex items-center mb-6">
+            <div className="flex items-start ">
               <input
                 type="checkbox"
                 name="receiveUpdates"
                 checked={receiveUpdates}
                 onChange={handleCheckboxChange}
-                className="mr-2"
+                className="mr-2 mt-1"
               />
-              <label className="text-sm text-gray-700">
+              <label className="text-md font-light text-gray-600">
                 I'd like to receive updates about new features and special offers
               </label>
             </div>
 
-            <button onClick={handleNext} className="w-full p-3 bg-green-500 text-white rounded hover:bg-green-600">
+            <button onClick={handleNext} className="w-full mt-4 p-3 bg-gradient-to-r from-[#63A7D4] to-[#F295BE]  text-white rounded hover:scale-105 cursor-pointer">
               Create Account
             </button>
 
             <div className="mt-4 text-center">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm lg:text-lg font-light text-gray-600">
                 Already have an account?{" "}
-                <a href="#" className="text-blue-500">
+                <span onClick={()=>router.push("/Login")} className="bg-gradient-to-r from-[#63A7D4] to-[#F295BE] bg-clip-text text-transparent font-medium">
                   Log in
-                </a>
+                </span>
               </span>
             </div>
           </div>
@@ -357,74 +395,97 @@ const SignupStepper = () => {
       case 1:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-bold mb-2">Customize Your Preferences</h2>
-            <p>Help us personalize your experience by selecting your preferences</p>
+            <div className="text-center">
+              <h2 className="text-xl lg:text-3xl italic font-bold mb-2">Customize Your Preferences</h2>
+              <p className="text-md lg:text-lg text-gray-500 font-light">Help us personalize your experience by selecting your preferences</p>
+            </div>
+
             <div>
-              <h4 className="font-semibold text-lg">Select Your Interests</h4>
-              <p>Choose topics that interest you to receive personalized content and recommendations</p>
-              <div className="flex flex-wrap gap-2 mt-2">
+              <h4 className="font-normal  text-xl lg:text-2xl">Select Your Interests</h4>
+              <p className="text-md text-gray-500 font-light my-2">Choose topics that interest you to receive personalized content and recommendations</p>
+              <div className="flex flex-wrap gap-3 my-4">
+                {/* Artificial Intelligence */}
                 <button
-                  className={`px-3 py-1 flex flex-col border rounded items-center ${selectedInterests.includes("AI") ? "bg-blue-100 border-blue-500" : ""}`}
+                  className={`px-4 py-2 w-48 flex flex-col border rounded-2xl items-center cursor-pointer transition-all duration-200 
+      ${selectedInterests.includes("AI") ? "bg-pink-200 border-pink-300 text-pink-900" : "bg-gray-200 border-gray-300 text-gray-800"}`}
                   onClick={() => handleInterestClick("AI")}
                 >
-                  <span className="block text-2xl mb-1">
-                    <MdPunchClock />
+                  <span className="block text-2xl bg-[#FBEFFF] rounded-full p-4 my-2">
+                    <MdOutlineSmartToy size={30} color="#C026D3" />
                   </span>
-                  Artificial Intelligence
+                  <span className="text-sm text-center">Artificial Intelligence</span>
                 </button>
+
+                {/* Machine Learning */}
                 <button
-                  className={`px-3 py-1 flex flex-col border rounded items-center ${selectedInterests.includes("ML") ? "bg-blue-100 border-blue-500" : ""}`}
+                  className={`px-4 py-2 w-48 flex flex-col border rounded-2xl items-center cursor-pointer transition-all duration-200 
+      ${selectedInterests.includes("ML") ? "bg-blue-200 border-blue-300 text-blue-900" : "bg-gray-200 border-gray-300 text-gray-800"}`}
                   onClick={() => handleInterestClick("ML")}
                 >
-                  <span className="block text-2xl mb-1">
-                    <CgSmartHomeWashMachine />
+                  <span className="block text-2xl bg-[#EEF4FF] rounded-full p-4 my-2">
+                    <CgSmartHomeWashMachine size={30} color="#3B82F6" />
                   </span>
-                  Machine Learning
+                  <span className="text-sm text-center">Machine Learning</span>
                 </button>
+
+                {/* Data Science */}
                 <button
-                  className={`px-3 py-1 flex flex-col border rounded items-center ${selectedInterests.includes("DS") ? "bg-blue-100 border-blue-500" : ""}`}
+                  className={`px-4 py-2 w-48 flex flex-col border rounded-2xl items-center cursor-pointer transition-all duration-200 
+      ${selectedInterests.includes("DS") ? "bg-green-200 border-green-300 text-green-900" : "bg-gray-200 border-gray-300 text-gray-800"}`}
                   onClick={() => handleInterestClick("DS")}
                 >
-                  <span className="block text-2xl mb-1">
-                    <IoBarChartSharp />
+                  <span className="block text-2xl bg-[#E6F4EA] rounded-full p-4 my-2">
+                    <IoBarChartSharp size={30} color="#059669" />
                   </span>
-                  Data Science
+                  <span className="text-sm text-center">Data Science</span>
                 </button>
+
+                {/* Cybersecurity */}
                 <button
-                  className={`px-3 py-1 flex flex-col border rounded items-center ${selectedInterests.includes("CS") ? "bg-blue-100 border-blue-500" : ""}`}
+                  className={`px-4 py-2 w-48 flex flex-col border rounded-2xl items-center cursor-pointer transition-all duration-200 
+      ${selectedInterests.includes("CS") ? "bg-orange-200 border-orange-300 text-orange-900" : "bg-gray-200 border-gray-300 text-gray-800"}`}
                   onClick={() => handleInterestClick("CS")}
                 >
-                  <span className="block text-2xl mb-1">
-                    <MdSecurity />
+                  <span className="block text-2xl bg-[#FFF3E6] rounded-full p-4 my-2">
+                    <MdSecurity size={30} color="#F97316" />
                   </span>
-                  Cybersecurity
+                  <span className="text-sm text-center">Cybersecurity</span>
                 </button>
+
+                {/* Web Development */}
                 <button
-                  className={`px-3 py-1 flex flex-col border rounded items-center ${selectedInterests.includes("WD") ? "bg-blue-100 border-blue-500" : ""}`}
+                  className={`px-4 py-2 w-48 flex flex-col border rounded-2xl items-center cursor-pointer transition-all duration-200 
+      ${selectedInterests.includes("WD") ? "bg-purple-200 border-purple-300 text-purple-900" : "bg-gray-200 border-gray-300 text-gray-800"}`}
                   onClick={() => handleInterestClick("WD")}
                 >
-                  <span className="block text-2xl mb-1">
-                    <IoCodeSlash />
+                  <span className="block text-2xl bg-[#F3E8FF] rounded-full p-4 my-2">
+                    <IoCodeSlash size={30} color="#8B5CF6" />
                   </span>
-                  Web Development
+                  <span className="text-sm text-center">Web Development</span>
                 </button>
               </div>
-            </div>
-            <div className="space-y-6">
-              <h4 className="font-semibold text-lg mt-4">Notification Settings</h4>
-              <p className="text-sm text-gray-600">Manage what types of notifications you'd like to receive</p>
 
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
+
+
+            </div>
+            <div className="space-y-2">
+
+              <h4 className="font-normal  text-xl lg:text-2xl">Notification Settings</h4>
+              <p className="text-md text-gray-500 font-light my-2">Manage what types of notifications you'd like to receive</p>
+
+              <div className="space-y-6 font-light py-4">
+                <div className="flex justify-between  items-start">
                   <div>
-                    <label className="flex items-center text-md">Product Updates</label>
-                    <p className="text-xs text-gray-500">Receive notifications about new features and improvements</p>
+                    <label className="text-md lg:text-lg font-medium">Product Updates</label>
+                    <p className="max-lg:text-sm lg:text-md text-gray-500 mt-1">
+                      Receive notifications about new features and improvements
+                    </p>
                   </div>
                   <ReactSwitch
                     checked={formData.receive_product_updates}
                     onChange={(checked) => handleToggleChange("receive_product_updates", checked)}
                     offColor="#ccc"
-                    onColor="#4caf50"
+                    onColor="#0EA5E9"
                     offHandleColor="#fff"
                     onHandleColor="#fff"
                     height={20}
@@ -432,16 +493,18 @@ const SignupStepper = () => {
                   />
                 </div>
 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <div>
-                    <label className="flex items-center text-md">New Features</label>
-                    <p className="text-xs text-gray-500">Be the first to know about new platform capabilities</p>
+                    <label className="text-md lg:text-lg font-medium">New Features</label>
+                    <p className="max-lg:text-sm lg:text-md text-gray-500 mt-1">
+                      Be the first to know about new platform capabilities
+                    </p>
                   </div>
                   <ReactSwitch
                     checked={formData.receive_new_features}
                     onChange={(checked) => handleToggleChange("receive_new_features", checked)}
                     offColor="#ccc"
-                    onColor="#4caf50"
+                    onColor="#0EA5E9"
                     offHandleColor="#fff"
                     onHandleColor="#fff"
                     height={20}
@@ -449,16 +512,18 @@ const SignupStepper = () => {
                   />
                 </div>
 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <div>
-                    <label className="flex items-center text-md">Community Updates</label>
-                    <p className="text-xs text-gray-500">Stay informed about community events and discussions</p>
+                    <label className="text-md lg:text-lg font-medium">Community Updates</label>
+                    <p className="max-lg:text-sm lg:text-md text-gray-500 mt-1">
+                      Stay informed about community events and discussions
+                    </p>
                   </div>
                   <ReactSwitch
                     checked={formData.receive_community_updates}
                     onChange={(checked) => handleToggleChange("receive_community_updates", checked)}
                     offColor="#ccc"
-                    onColor="#4caf50"
+                    onColor="#0EA5E9"
                     offHandleColor="#fff"
                     onHandleColor="#fff"
                     height={20}
@@ -466,16 +531,18 @@ const SignupStepper = () => {
                   />
                 </div>
 
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-start">
                   <div>
-                    <label className="flex items-center text-md">Marketing Communications</label>
-                    <p className="text-xs text-gray-500">Receive special offers, promotions, and marketing messages</p>
+                    <label className="text-md lg:text-lg font-medium">Marketing Communications</label>
+                    <p className="max-lg:text-sm text-md text-gray-500 mt-1">
+                      Receive special offers, promotions, and marketing messages
+                    </p>
                   </div>
                   <ReactSwitch
                     checked={formData.receive_marketing_emails}
                     onChange={(checked) => handleToggleChange("receive_marketing_emails", checked)}
                     offColor="#ccc"
-                    onColor="#4caf50"
+                    onColor="#0EA5E9"
                     offHandleColor="#fff"
                     onHandleColor="#fff"
                     height={20}
@@ -483,50 +550,47 @@ const SignupStepper = () => {
                   />
                 </div>
               </div>
+
             </div>
 
-            <div className="mt-4">
-              <h4 className="font-semibold">Your Timezone</h4>
-              <select
-                className="w-full p-2 border rounded mt-2"
-                name="timezone"
-                value={formData.timezone}
-                onChange={handleInputChange}
-              >
-                <option value="America/New_York">America/New_York (UTC-04:00)</option>
-                <option value="America/Los_Angeles">America/Los_Angeles (UTC-07:00)</option>
-                <option value="Europe/London">Europe/London (UTC+01:00)</option>
-                <option value="Asia/Tokyo">Asia/Tokyo (UTC+09:00)</option>
-                <option value="Asia/Kolkata">Asia/Kolkata (UTC+05:30)</option>
-                <option value="Australia/Sydney">Australia/Sydney (UTC+10:00)</option>
-              </select>
-            </div>
+            <label className="font-medium text-md">Timezone</label>
+      <Select
+        className="mt-2"
+        name="timezone"
+        value={timezoneOptions.find(option => option.value === formData.timezone)}
+        options={timezoneOptions}
+        onChange={handleChange}
+        placeholder="Select a timezone"
+      />
           </div>
         )
       case 2:
         return (
           <div className="space-y-4">
-            <h2 className="text-xl font-bold mb-2">Almost Done!</h2>
-            <p>Please review your information before submitting.</p>
+            <h2 className=" flex gap-4 text-xl lg:text-2xl text-neutral-800 italic items-center font-bold mb-2"> <span className="p-4 rounded-full bg-green-200"><FaCheck  color="green"/>
+            </span>Almost Done! Please review your Prefernces.</h2>
+            
 
-            <div className="border rounded-lg p-4 bg-gray-50">
-              <h3 className="font-semibold mb-2">Account Information</h3>
+            <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+            <span className="flex gap-4"><span><MdOutlineManageAccounts   color="#2B6CB0" size={30}/></span> <h3 className="font-normal text-xl mb-2"> Account Information</h3></span>
+              <h3 className="font-normal text-xl mb-2"></h3>
               <ul className="space-y-2">
                 <li>
-                  <strong>Name:</strong> {formData.full_name}
+                  <strong className="text-neutral-800">Name:</strong> <span className="text-gray-600">{formData.full_name}</span>
                 </li>
                 <li>
-                  <strong>Email:</strong> {formData.email}
+                  <strong className="text-neutral-800">Email:</strong> <span className="text-gray-600">{formData.email}</span>
                 </li>
               </ul>
             </div>
 
-            <div className="border rounded-lg p-4 bg-gray-50">
-              <h3 className="font-semibold mb-2">Selected Interests</h3>
+            <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+            <span className="flex gap-4"><span><MdOutlineInterests  color="#2B6CB0" size={30}/></span> <h3 className="font-normal text-xl mb-2"> Selected Interests</h3></span>
+             
               {selectedInterests.length > 0 ? (
                 <div className="flex flex-wrap gap-2">
                   {selectedInterests.map((interest) => (
-                    <span key={interest} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                    <span key={interest} className="px-2 py-1 bg-blue-100 text-sky-700 rounded-full text-md">
                       {interest === "AI" && "Artificial Intelligence"}
                       {interest === "ML" && "Machine Learning"}
                       {interest === "DS" && "Data Science"}
@@ -540,8 +604,9 @@ const SignupStepper = () => {
               )}
             </div>
 
-            <div className="border rounded-lg p-4 bg-gray-50">
-              <h3 className="font-semibold mb-2">Notification Preferences</h3>
+            <div className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+            <span className="flex gap-4"><span><IoMdNotificationsOutline  color="#2B6CB0" size={30}/></span> <h3 className="font-normal text-xl mb-2"> Notification Preferences</h3></span>
+             
               <ul className="space-y-1">
                 <li className={formData.receive_product_updates ? "text-green-600" : "text-gray-400"}>
                   {formData.receive_product_updates ? "✓" : "✗"} Product Updates
@@ -558,10 +623,11 @@ const SignupStepper = () => {
               </ul>
             </div>
 
-            <div className="border rounded-lg p-4 bg-gray-50">
-              <h3 className="font-semibold mb-2">Other Settings</h3>
-              <p>
-                <strong>Timezone:</strong> {formData.timezone}
+            <div className=" border  border-gray-300 rounded-lg p-4 bg-gray-50">
+            <span className="flex gap-4"><span><IoSettingsOutline  color="#2B6CB0" size={30}/></span> <h3 className="font-normal text-xl mb-2">TimeZone</h3></span>
+             
+              <p className="flex gap-4 my-2">
+                <strong className="text-neutral-800"><CiGlobe size={20} color="gray"/></strong>  <span className="text-gray-600">{formData.timezone}</span>
               </p>
             </div>
 
@@ -572,7 +638,7 @@ const SignupStepper = () => {
         )
       case 3:
         return (
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 ">
             <div className="text-green-500 text-6xl mb-4">✓</div>
             <h2 className="text-2xl font-bold">Registration Complete!</h2>
             <p className="text-gray-600">Thank you for creating an account with us.</p>
@@ -581,7 +647,7 @@ const SignupStepper = () => {
             </p>
             <button
               onClick={() => router.push("/Dashboard")}
-              className="mt-4 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+              className="mt-4 px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 cursor-pointer"
             >
               Go to Dashboard
             </button>
@@ -594,57 +660,70 @@ const SignupStepper = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="flex justify-between py-2 ">
-          <div>
-            <img src="/images/logo/company-logo.png" alt="company-logo" className="w-30" />
+      <div className="flex flex-col bg-gray-100 h-screen justify-between ">
+        <div className="flex flex-col  bg-white">
+          <div className="flex container mx-auto justify-between items-center py-2 px-4">
+            <div>
+              <img src="/images/logo/company-logo.png" alt="company-logo" className="w-24 lg:w-30" />
+            </div>
+            <div className="text-sm space-x-2">
+              <span className="text-sm lg:text-md font-light text-gray-600">Need Help?</span>
+              <span className="bg-gradient-to-r from-[#63A7D4] to-[#F295BE] bg-clip-text text-transparent font-medium">Contact Support</span>
+            </div>
+
           </div>
-          <div className="text-sm space-x-2">
-            <span className="text-gray-500">Need Help?</span>
-            <span className="text-blue-500">Contact Support</span>
+          <div className="">
+            {/* Stepper */}
+           {activeStep<3 &&
+            <Stepper activeStep={activeStep} />
+           }
+            
+
+
+
           </div>
+
         </div>
-        <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded shadow">
-          {/* Stepper */}
-          <Stepper activeStep={activeStep}>
-            <Step label="Account" />
-            <Step label="Preferences" />
-            <Step label="Confirmation" />
-          </Stepper>
+
+        <div className="max-w-3xl px-4 mx-auto">
+
 
           {/* Content */}
-          <div className="mt-8">
+          <div className="mt-8 rounded-2xl mx-auto my-4  p-4 bg-white ">
             {renderStepContent(activeStep)}
             {activeStep < 3 && (
               <div className="flex justify-between mt-6">
                 <button
                   onClick={handleBack}
                   disabled={activeStep === 0}
-                  className="px-6 py-2 border rounded disabled:opacity-50"
+                  className="px-6 py-2 border border-gray-400 rounded disabled:opacity-50"
                 >
                   Back
                 </button>
-                <button onClick={handleNext} className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button onClick={handleNext} className="px-6 py-2 bg-[#63A7D4] text-white rounded hover:cursor-pointer">
                   {activeStep === 2 ? "Submit" : "Next"}
                 </button>
               </div>
             )}
           </div>
         </div>
-        <div className="py-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 text-center gap-2">
-          <p>© 2025 d23.ai. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="#" className="text-gray-500 hover:underline">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-500 hover:underline">
-              Terms of Service
-            </a>
-            <a href="#" className="text-gray-500 hover:underline">
-              Help Center
-            </a>
+        <div className="bg-white ">
+          <div className="container mx-auto py-4 flex flex-col md:flex-row items-center justify-between text-md font-light text-gray-500 text-center gap-2">
+            <p>© 2025 d23.ai. All rights reserved.</p>
+            <div className="flex gap-4">
+              <a href="#" className=" hover:underline">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:underline">
+                Terms of Service
+              </a>
+              <a href="#" className=" hover:underline">
+                Help Center
+              </a>
+            </div>
           </div>
         </div>
+
       </div>
     </>
   )

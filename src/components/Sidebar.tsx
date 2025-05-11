@@ -1,4 +1,4 @@
-"use client"; // if using Next.js 13/14
+'use client';
 
 import { useState } from "react";
 import Link from "next/link";
@@ -14,15 +14,34 @@ import {
   FaMedal,
   FaBars,
 } from "react-icons/fa";
+import { logout } from '../store/slices/firebaseAuthSlice';
+import { useDispatch } from "react-redux"
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push('/');
+  };
+
+  const navLinks = [
+    { href: '/Dashboard', label: 'Dashboard', icon: <FaHome /> },
+    { href: '/MyDebates', label: 'My Debates', icon: <FaCalendar /> },
+    { href: '/Rankings', label: 'Rankings', icon: <FaStar /> },
+    { href: '/Schedule', label: 'Schedule', icon: <FaCalendarAlt /> },
+    { href: '/Settings', label: 'Settings', icon: <FaCog /> },
+  ];
 
   return (
     <>
       {/* Menu Button */}
       <button
-        className="fixed top-4 left-4 z-50 bg-white p-2 rounded-md shadow-lg lg:hidden"
+        className="fixed top-3 left-4 z-50 bg-white p-2 rounded-md shadow-lg lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <FaBars className="text-2xl text-purple-600" />
@@ -30,22 +49,20 @@ export default function Sidebar() {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-white shadow-xl z-40 flex flex-col transform ${
+        className={`fixed inset-y-0 left-0 w-64 bg-white z-40 flex flex-col transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0`}
       >
         {/* Top Logo and Profile */}
         <div className="p-6">
-          {/* Logo */}
           <div className="flex justify-center items-center mb-6">
             <img
-              src="./images/logo/company-logo.png"
+              src="/images/logo/company-logo.png"
               alt="company-logo"
-              className="w-32 "
+              className="w-32"
             />
           </div>
 
-          {/* Profile */}
           <div className="flex items-center space-x-4 p-4 bg-purple-50 rounded-2xl mb-8">
             <div className="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center text-white text-lg font-semibold">
               AK
@@ -63,60 +80,29 @@ export default function Sidebar() {
 
         {/* Navigation Links */}
         <div className="flex-1 flex flex-col space-y-2 px-6 overflow-y-auto">
-          <Link
-            href="/"
-            className="flex items-center space-x-3 text-purple-600 bg-purple-50 px-4 py-3 rounded-xl"
-          >
-            <FaHome />
-            <span>Dashboard</span>
-          </Link>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-colors ${
+                  isActive
+                    ? 'text-purple-400 bg-purple-50 font-medium'
+                    : 'text-gray-600 hover:text-purple-500'
+                }`}
+              >
+                {link.icon}
+                <span>{link.label}</span>
+              </Link>
+            );
+          })}
 
-          <Link
-            href="/my-debates"
-            className="flex items-center space-x-3 text-gray-600 hover:text-purple-600 px-4 py-3 rounded-xl"
-          >
-            <FaCalendar />
-            <span>My Debates</span>
-          </Link>
-
-          <Link
-            href="/tournaments"
-            className="flex items-center space-x-3 text-gray-600 hover:text-purple-600 px-4 py-3 rounded-xl"
-          >
-            <FaTrophy />
-            <span>Tournaments</span>
-          </Link>
-
-          <Link
-            href="/rankings"
-            className="flex items-center space-x-3 text-gray-600 hover:text-purple-600 px-4 py-3 rounded-xl"
-          >
-            <FaStar />
-            <span>Rankings</span>
-          </Link>
-
-          <Link
-            href="/schedule"
-            className="flex items-center space-x-3 text-gray-600 hover:text-purple-600 px-4 py-3 rounded-xl"
-          >
-            <FaCalendarAlt />
-            <span>Schedule</span>
-          </Link>
-
-          <Link
-            href="/settings"
-            className="flex items-center space-x-3 text-gray-600 hover:text-purple-600 px-4 py-3 rounded-xl"
-          >
-            <FaCog />
-            <span>Settings</span>
-          </Link>
-
-          {/* Spacer */}
           <div className="flex-1" />
 
           {/* Logout Button */}
           <button
-            onClick={() => console.log("Logout clicked")}
+            onClick={handleLogout}
             className="flex items-center space-x-3 text-red-600 hover:text-red-700 px-4 py-3 rounded-xl mb-6"
           >
             <FaSignOutAlt />
