@@ -51,8 +51,8 @@ export default function ContactSection() {
           
           {/* Left: Contact Form */}
           <motion.div 
-            initial={{ x: -100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            initial={{ y: -100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
             className='flex flex-col relative w-full lg:w-1/2 bg-white rounded-xl shadow-md p-6 md:p-8'
           >
@@ -64,11 +64,11 @@ export default function ContactSection() {
               <div className='text-3xl p-4 rounded-full bg-purple-100 text-purple-400'><IoChatbubblesOutline /></div>
               <div>
                 <h3 className='text-lg font-light'>Send us a Message</h3>
-                <p className='text-md font-light text-gray-500'>We&apos;ll get back to you within 24 hours</p>
+                <p className='text-md font-light text-gray-500 mb-8'>We&apos;ll get back to you within 24 hours</p>
               </div>
             </div>
 
-            <form className='space-y-4'>
+            <form className='space-y-6'>
               <label>Name</label>
               <div className='relative mt-2'>
                 <FaRegUser className='absolute top-3 left-3 text-gray-400' />
@@ -97,20 +97,22 @@ export default function ContactSection() {
                   className='w-full rounded-lg py-2 px-3 outline-none bg-gray-100 placeholder:font-light focus:bg-white resize-none'
                 />
               </div>
-
+              <div className='mt-8'>
               <button
                 type='submit'
-                className='w-full bg-gradient-to-r from-blue-400 to-pink-400 text-white font-light py-4 rounded-lg flex justify-center items-center gap-2'
+                className='w-full bg-gradient-to-r from-blue-400 to-pink-400 text-white font-light py-4 mt-8 cursor-pointer rounded-lg flex justify-center items-center gap-2'
               >
                 Send Message <GrSend />
               </button>
+              </div>
+            
             </form>
           </motion.div>
 
           {/* Right: Image and Info */}
           <motion.div 
-            initial={{ x: 100, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
             className='flex w-full lg:w-1/2 flex-col gap-4 justify-between'
           >
@@ -129,7 +131,7 @@ export default function ContactSection() {
                 <div className='text-3xl text-purple-400'><FaRegEnvelope /></div>
                 <div>
                   <h4 className='font-light text-sm'>Email</h4>
-                  <p className='text-gray-600 font-light text-sm'>support@hireIn.ai</p>
+                  <p className='text-gray-600 font-light text-sm'>support@d23.ai</p>
                 </div>
               </div>
             </div>

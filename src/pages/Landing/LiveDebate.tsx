@@ -52,7 +52,7 @@ export default function ExploreDebatesPage() {
                   />
                 ))}
               </div>
-              <button className="flex items-center gap-2 bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white text-sm px-4 py-2 rounded-lg transition">
+              <button className="flex items-center gap-2 bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white text-sm cursor-pointer px-4 py-2 rounded-lg transition">
                 <span><MdOutlineVideoCameraFront size={20} /></span> Join Debate
               </button>
             </div>
@@ -100,8 +100,8 @@ export default function ExploreDebatesPage() {
         </div>
         <hr className="w-20 h-1 bg-gradient-to-r from-[#63A7D4] to-[#F295BE] border-0 rounded mx-auto mt-4  mb-12" />
         {/* View All */}
-        <div className="mt-8 text-right">
-          <a href="#" className="text-sm text-blue-500 hover:underline">
+        <div className="mt-8 text-right ">
+          <a href="#" className="text-sm text-blue-500  hover:underline">
             View All &gt;&gt;
           </a>
         </div>
@@ -111,7 +111,7 @@ export default function ExploreDebatesPage() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab as "Live" | "Upcoming" | "Past")}
-              className={`px-8 py-2 rounded-full text-sm font-normal transition ${activeTab === tab
+              className={`px-8 py-2 rounded-full cursor-pointer text-sm font-normal transition ${activeTab === tab
                 ? "bg-blue-100 text-[#2B6CB0]"
                 : "text-gray-500 hover:text-[#2B6CD0]"
                 }`}

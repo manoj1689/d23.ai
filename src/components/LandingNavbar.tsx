@@ -96,7 +96,7 @@ function Navbar() {
             {/* Sign In */}
             <div>
               <button
-                className="flex bg-gray-700 text-black px-4 py-2 border border-gray-600 rounded-md text-sm font-semibold justify-center items-center gap-4 hover:bg-gray-600 transition"
+                className="flex bg-gray-700 text-black px-4 py-2 border cursor-pointer border-gray-600 rounded-md text-sm font-semibold justify-center items-center gap-4 hover:bg-gray-600 transition"
                 onClick={() => router.push("/Login")}
               >
                 <span className="text-white">Sign In</span>

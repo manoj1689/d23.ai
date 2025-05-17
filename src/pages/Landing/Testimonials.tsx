@@ -35,8 +35,8 @@ function Testimonials() {
 
                         {/* Sarah */}
                         <motion.div
-                            initial={{ x: -80, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
+                            initial={{ y: -80, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                             className="flex flex-col justify-between bg-white shadow-md rounded-2xl w-full lg:w-1/3 text-center p-4 min-h-[600px]"
@@ -62,7 +62,7 @@ function Testimonials() {
                                 “D23.ai helped me secure the national championship. The AI feedback was instrumental in perfecting my arguments.”
                             </p>
                             <div className='flex justify-center'>
-                                <button className="mt-4 text-sky-500 hover:underline text-base lg:text-lg bg-gray-100 px-8 py-2 rounded-2xl mb-4 font-normal">View Profile</button>
+                                <button className="mt-4 text-sky-500 hover:underline text-base lg:text-lg bg-gray-100 px-8 py-2 cursor-pointer rounded-2xl mb-4 font-normal">View Profile</button>
                             </div>
                         </motion.div>
 
@@ -95,14 +95,14 @@ function Testimonials() {
                                 “Our team’s win rate increased by 70% after incorporating D23.ai into our practice routine.”
                             </p>
                             <div className='flex justify-center'>
-                                <button className="mt-4 text-sky-500 hover:underline text-base lg:text-lg bg-gray-100 px-8 py-2 rounded-2xl mb-4 font-normal">View Profile</button>
+                                <button className="mt-4 text-sky-500 hover:underline text-base lg:text-lg bg-gray-100 px-8 py-2 cursor-pointer rounded-2xl mb-4 font-normal">View Profile</button>
                             </div>
                         </motion.div>
 
                         {/* Elena */}
                         <motion.div
-                            initial={{ x: 80, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
+                            initial={{ y: 80, opacity: 0 }}
+                            whileInView={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.8 }}
                             viewport={{ once: true }}
                             className="flex flex-col justify-between bg-white shadow-md rounded-2xl w-full lg:w-1/3 text-center p-4 min-h-[600px]"
@@ -128,7 +128,7 @@ function Testimonials() {
                                 “The platform’s multilingual support helped me excel in international competitions.”
                             </p>
                             <div className='flex justify-center'>
-                                <button className="mt-4 text-sky-500 hover:underline text-base lg:text-lg bg-gray-100 px-8 py-2 rounded-2xl mb-4 font-normal">View Profile</button>
+                                <button className="mt-4 text-sky-500 hover:underline text-base lg:text-lg bg-gray-100 px-8 py-2 cursor-pointer rounded-2xl mb-4 font-normal">View Profile</button>
                             </div>
                         </motion.div>
                     </div>

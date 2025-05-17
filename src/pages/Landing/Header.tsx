@@ -81,8 +81,8 @@ function Header() {
                         {/* Left: Slide in from left */}
                         <motion.div
                             className="w-1/3 flex max-lg:flex-col justify-center items-center px-2 lg:gap-3"
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
                         >
                             <div className="text-lg lg:text-2xl font-light">50K+</div>
@@ -103,8 +103,8 @@ function Header() {
                         {/* Right: Slide in from right */}
                         <motion.div
                             className="w-1/3 flex max-lg:flex-col justify-center items-center px-2 lg:gap-3 border-l-2 border-gray-500"
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
                         >
                             <div className="text-lg lg:text-2xl font-light">24/7</div>

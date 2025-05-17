@@ -1,5 +1,5 @@
 import React from "react";
-
+import { useRouter } from "next/router";
 const debates = [
   {
     title: "Climate Change Policy Debate",
@@ -45,13 +45,14 @@ const debates = [
 ];
 
 const UpcomingDebatesPage = () => {
+  const router = useRouter();
   return (
     <div className=" mx-auto p-6 bg-white rounded-xl shadow my-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-semibold text-gray-800">Upcoming Debates</h2>
+      <div className="flex  flex-col lg:flex-row justify-between items-center mb-4 gap-4">
+        <h2 className="text-lg lg:text-2xl font-semibold text-gray-800">Upcoming Debates</h2>
         <div className="flex gap-2 text-sm">
           <button className="px-3 py-1 rounded-full bg-gray-100 text-gray-700">All</button>
-          <button className="px-3 py-1 rounded-full bg-gradient-to-r from-indigo-100 to-pink-100 text-indigo-700">This Week</button>
+          <button className="px-3 py-1 rounded-full bg-gradient-to-r from-[#63A7D4] to-[#F295BE] text-white">This Week</button>
           <button className="px-3 py-1 rounded-full bg-gray-100 text-gray-700">Next Week</button>
         </div>
       </div>
@@ -70,15 +71,19 @@ const UpcomingDebatesPage = () => {
                 </span>
               </h3>
               <div className="flex items-center gap-2">
-                <span className="text-md text-yellow-600 bg-yellow-100 px-2 py-1 rounded-full">
+                <span className="text-sm font-light text-yellow-600 bg-yellow-100 px-2 py-1 rounded-full">
                   {debate.status}
                 </span>
-                <button className="px-4 py-1 text-lg text-white bg-gradient-to-r from-pink-400 to-indigo-400 rounded-lg">
+                <button className="px-4 py-1 text-lg font-light text-stone-600 bg-gray-100 hover:bg-pink-200 border border-gray-300 rounded-lg cursor-pointer"
+                  onClick={() => {
+                    if (debate.action === "View") router.push("/Result");
+                  }}
+                >
                   {debate.action}
                 </button>
               </div>
             </div>
-            <p className="text-md text-gray-600">{debate.time}</p>
+            <p className="text-md font-light text-gray-600">{debate.time}</p>
             <div className="flex items-center gap-2 text-sm text-gray-700">
               <img src={debate.avatar} alt={debate.participant} className="w-6 h-6 rounded-full" />
               <span className="font-light text-black">vs. {debate.participant}</span>
@@ -88,7 +93,7 @@ const UpcomingDebatesPage = () => {
       </div>
 
       <div className="text-center mt-4">
-        <a href="#" className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-indigo-500 font-light cursor-pointer hover:underline">
+        <a href="#" className="text-lg text-transparent bg-clip-text bg-gradient-to-r from-[#63A7D4] to-[#F295BE] font-medium cursor-pointer hover:underline">
           View All Debates
         </a>
       </div>

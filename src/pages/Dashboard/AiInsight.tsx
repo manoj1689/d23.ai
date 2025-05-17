@@ -59,23 +59,33 @@ const AiInsight = () => {
   const tips = [
     'Try using more statistical evidence to strengthen your economic arguments.',
     'Your rebuttals could be more effective with direct counter-examples.',
-    'Consider slowing your speech rate by 10% for better clarity.',
+   'Consider slowing your speech rate by 10% for better clarity.'
   ];
 
 
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-8">
+    <div className=" mx-auto p-4 space-y-4">
       {/* Donut Chart */}
       <div className="bg-white rounded-xl  shadow p-6 ">
-        <h2 className="text-lg font-semibold mb-4 text-center">Debate Content Types</h2>
+        <div className='flex justify-between'>
+          <div className="text-lg lg:text-2xl font-semibold">
+            Ai Insight
+          </div>
+          <div className='underline text-sm text-gray-500'>
+            View Details
+          </div>
+        </div>
+        <div className='flex w-4/5 mx-auto '>
         <Doughnut data={donutData} options={donutOptions}   />
+        </div>
+        
       </div>
 
       {/* Logic vs Emotion Balance */}
-      <div className="bg-white rounded-xl shadow p-6">
+      <div className="bg-white rounded-xl shadow p-4">
         <div className="flex justify-between text-md font-[17px] mb-2">
-          <span>Logic vs. Emotion Balance</span>
+          <span className='text-lg font-medium'>Logic vs. Emotion Balance</span>
           <span>{logicPercentage}:{emotionPercentage}</span>
         </div>
 
@@ -92,11 +102,11 @@ const AiInsight = () => {
 
         {/* AI Tips */}
         <h3 className="text-md font-semibold mb-2">Latest AI Tips</h3>
-        <ul className="space-y-2">
+        <ul className="space-y-4">
           {tips.map((tip, index) => (
             <li key={index} className="flex items-start gap-2  text-md text-gray-600">
               <span className="text-blue-500 p-2 rounded-full bg-gray-100"><IoBulbOutline size={20}/></span>
-              <span>{tip}</span>
+              <span className='font-light'>{tip}</span>
             </li>
           ))}
         </ul>

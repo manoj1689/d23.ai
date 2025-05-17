@@ -35,8 +35,8 @@ export default function LiveStreamingSection() {
 
                 <div className="grid md:grid-cols-2 gap-6 items-center ">
                 <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -56,8 +56,8 @@ export default function LiveStreamingSection() {
 
                     </motion.div>
      <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -102,7 +102,7 @@ export default function LiveStreamingSection() {
                             </li>
                         </ul>
 
-                        <button className="mt-6 bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white px-6 py-2 rounded-md text-sm md:text-base lg:text-lg">
+                        <button className="mt-6 bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white px-6 py-2 cursor-pointer rounded-md text-sm md:text-base lg:text-lg">
                             Start Streaming
                         </button>
                     </div>

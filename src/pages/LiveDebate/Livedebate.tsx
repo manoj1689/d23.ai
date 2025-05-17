@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { FaTimes } from 'react-icons/fa';
-
+import { useRouter } from 'next/navigation';
 const formatOptions = [
   { value: 'Oxford Style', label: 'Oxford Style' },
   { value: 'Parliamentary', label: 'Parliamentary' },
@@ -31,6 +31,7 @@ const durationOptions = [
 ];
 
 const CreateDebateRoomPage = () => {
+  const router =useRouter()
   // Inputs
   const [roomName, setRoomName] = useState('');
   const [topic, setTopic] = useState('');
@@ -75,7 +76,7 @@ const CreateDebateRoomPage = () => {
   ]);
 
   const handleJoinRoom = (roomId: string) => {
-    console.log(`Joining room with ID: ${roomId}`);
+    router.push(`/OnGoingDebate/${roomId}`);
     // Add navigation or join logic here
   };
 
@@ -191,7 +192,7 @@ const CreateDebateRoomPage = () => {
                   </div>
                   <button
                     onClick={() => handleJoinRoom(room.id)}
-                    className="bg-gradient-to-r from-[#63A7D4] to-[#F295BE] text-white px-3 py-1.5 rounded-lg hover:scale-105 transition-all text-sm"
+                    className="bg-gradient-to-r from-[#63A7D4] to-[#F295BE] text-white cursor-pointer px-3 py-1.5 rounded-lg hover:scale-105 transition-all text-sm"
                   >
                     Join Room
                   </button>

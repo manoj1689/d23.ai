@@ -7,8 +7,9 @@ import {
 } from "react-icons/fa";
 import { IoCallOutline, IoLocationOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
-
+import { useRouter } from "next/navigation";
 function Footer() {
+  const router = useRouter()
   return (
     <motion.footer
       className="bg-white"
@@ -46,7 +47,7 @@ function Footer() {
           <div className="flex-1">
             <h4 className="text-md md:text-lg font-semibold mb-2">Resources</h4>
             <ul className="text-md md:text-lg text-[#9CA3AF] font-light space-y-1">
-              <li>Blog</li>
+              <li onClick={()=>router.push("/Blog")} className="cursor-pointer hover:text-pink-300">Blog</li>
               <li>Tutorials</li>
               <li>FAQ</li>
               <li>Support</li>

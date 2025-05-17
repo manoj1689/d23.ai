@@ -126,7 +126,9 @@ const LiveDebatesPage = () => {
            
           </div>
           <div>
-          <button className="flex w-full mt-4 justify-center items-center gap-2 bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white text-sm px-4 py-2 rounded-lg transition">
+          <button className="flex w-full mt-4 justify-center cursor-pointer items-center gap-2 bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white text-sm px-4 py-2 rounded-lg transition"
+          onClick={()=>router.push("/OnGoingDebate")}
+          >
               <MdOutlineVideoCameraFront size={20} /> Join Debate
             </button>
           </div>

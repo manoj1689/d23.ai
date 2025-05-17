@@ -51,8 +51,8 @@ function Support() {
 
     <div className="flex flex-col lg:flex-row gap-10 ">
           <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: -50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.3 }}
                   >
@@ -93,8 +93,8 @@ function Support() {
                   </motion.div>
       
     <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -140,7 +140,7 @@ function Support() {
            
             {/* CTA Button */}
             <div className='flex w-full justify-center lg:justify-start '>
-            <button className="relative mt-6 text-lg font-light bg-gradient-to-l from-[#F295BE] to-[#63A7D4] text-white px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition">
+            <button className="relative mt-6 text-lg font-light bg-gradient-to-l  from-[#F295BE] to-[#63A7D4] text-white cursor-pointer  px-6 py-3 rounded-xl shadow-md hover:opacity-90 transition">
                 Try AI Features Now
             </button>
             </div>

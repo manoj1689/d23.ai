@@ -16,6 +16,7 @@ const LoginPage = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   // ✅ Google Login
   const signInWithGoogle = async () => {
@@ -26,6 +27,7 @@ const LoginPage = () => {
       router.push("/Dashboard");
     } catch (error) {
       console.error("Google login failed:", error);
+      setErrorMsg("Google login failed. Please try again.");
     }
   };
 
@@ -38,6 +40,7 @@ const LoginPage = () => {
       router.push("/Dashboard");
     } catch (error) {
       console.error("Facebook login failed:", error);
+      setErrorMsg("Facebook login failed. Please try again.");
     }
   };
 
@@ -56,6 +59,7 @@ const LoginPage = () => {
     } catch (error) {
       console.error('Login failed:', error);
       // Optionally, show an error message to the user
+      setErrorMsg("Email or password is incorrect. Please try again.");
     }
   };
   return (
@@ -94,7 +98,11 @@ const LoginPage = () => {
             <input type="checkbox" id="remember" className="mr-2" />
             <label htmlFor="remember" className="text-sm text-gray-600">Remember me</label>
           </div>
-
+          {errorMsg && (
+    <div className="bg-red-100 text-red-700 px-4 py-2 rounded-md text-sm">
+      {errorMsg}
+    </div>
+  )}
           <button
             type="submit"
             className="w-full py-2 text-white font-semibold rounded-md bg-gradient-to-r from-blue-400 to-pink-400 hover:opacity-90"

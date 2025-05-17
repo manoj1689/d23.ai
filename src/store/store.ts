@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['firebaseAuth','topics'], // only persist this slice
+  whitelist: ['firebaseAuth'], // only persist this slice
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

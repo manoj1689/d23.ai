@@ -1,0 +1,275 @@
+[
+  {
+    "id": 1,
+    "image": "https://picsum.photos/seed/ai-revolution/800/600",
+    "category": "Technology",
+    "title": "AI Revolution in Everyday Devices",
+    "description": "Explore how AI is transforming consumer technology.",
+    "author": {
+      "name": "Alice Walker",
+      "image": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    "readTime": "5 min read",
+    "excerpt": "Artificial Intelligence (AI) is revolutionizing industries and transforming consumer technology. From voice assistants to personalized recommendations, AI is making everyday devices smarter.",
+    "sections": [
+      {
+        "heading": "Introduction to AI in Consumer Devices",
+        "content": "AI is increasingly being integrated into consumer devices, from smartphones to home assistants. These devices are becoming smarter, understanding user behavior, and adapting to individual needs."
+      },
+      {
+        "heading": "AI in Smart Home Devices",
+        "content": "AI is central to the development of smart homes, with devices like smart thermostats, lights, and security systems becoming more intuitive and responsive."
+      },
+      {
+        "heading": "The Future of AI in Everyday Life",
+        "content": "The potential for AI in everyday life is immense. As technology advances, AI-powered devices will become even more integrated into our daily routines, offering convenience and personalized experiences."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "James Wilson",
+        "timeAgo": "1 hour ago",
+        "comment": "Great article! AI is certainly changing the way we interact with our devices. Looking forward to more innovative advancements."
+      },
+      {
+        "commenter": "Sarah Chen",
+        "timeAgo": "3 hours ago",
+        "comment": "I would love to see more examples of AI in healthcare devices. This was an interesting read!"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "image": "https://picsum.photos/seed/quantum-computing/800/600",
+    "category": "Technology",
+    "title": "Quantum Computing Explained",
+    "description": "Understand the basics of quantum computing and its potential.",
+    "author": {
+      "name": "John Smith",
+      "image": "https://randomuser.me/api/portraits/men/47.jpg"
+    },
+    "readTime": "6 min read",
+    "excerpt": "Quantum computing is poised to revolutionize industries by solving problems that classical computers cannot. This article explains the fundamental concepts of quantum computing and its applications.",
+    "sections": [
+      {
+        "heading": "What is Quantum Computing?",
+        "content": "Quantum computing leverages the principles of quantum mechanics, which govern the behavior of particles at the smallest scales. Unlike classical computers, quantum computers use quantum bits (qubits) to process information."
+      },
+      {
+        "heading": "Applications of Quantum Computing",
+        "content": "Quantum computing can be used for a variety of tasks, such as optimizing supply chains, simulating molecular structures for drug discovery, and enhancing machine learning algorithms."
+      },
+      {
+        "heading": "Challenges in Quantum Computing",
+        "content": "Despite its promise, quantum computing faces significant challenges, including error rates, qubit coherence times, and the need for ultra-cold environments. Researchers are working hard to overcome these obstacles."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "Mike Johnson",
+        "timeAgo": "5 hours ago",
+        "comment": "Quantum computing is fascinating! The potential for AI and machine learning is huge, especially in fields like healthcare."
+      },
+      {
+        "commenter": "Linda Davis",
+        "timeAgo": "7 hours ago",
+        "comment": "I'm excited about the future of quantum computing but also concerned about its accessibility and practical applications."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "image": "https://picsum.photos/seed/minimalist-design/800/600",
+    "category": "Design",
+    "title": "Minimalist Web Design Principles",
+    "description": "Learn how to simplify design without losing impact.",
+    "author": {
+      "name": "Clara James",
+      "image": "https://randomuser.me/api/portraits/women/65.jpg"
+    },
+    "readTime": "4 min read",
+    "excerpt": "Minimalist design focuses on simplicity and functionality, stripping away unnecessary elements. This article delves into the principles of minimalist web design and how to apply them effectively.",
+    "sections": [
+      {
+        "heading": "What is Minimalist Web Design?",
+        "content": "Minimalist design focuses on the use of clean lines, simple typography, and a limited color palette to create a visually appealing and user-friendly experience."
+      },
+      {
+        "heading": "Key Principles of Minimalist Design",
+        "content": "Key principles include using negative space effectively, choosing typography carefully, and focusing on the user experience by eliminating distractions."
+      },
+      {
+        "heading": "Implementing Minimalism in Web Design",
+        "content": "When implementing minimalist design, it's important to prioritize content and usability. Make sure the design serves the purpose of the website without overwhelming the user."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "David Taylor",
+        "timeAgo": "2 hours ago",
+        "comment": "Minimalist design is always a win! I love how simple designs can create a more focused user experience."
+      },
+      {
+        "commenter": "Sophia Lee",
+        "timeAgo": "4 hours ago",
+        "comment": "I've been experimenting with minimalist design for my website. This article was super helpful!"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "image": "https://picsum.photos/seed/color-theory/800/600",
+    "category": "Design",
+    "title": "Color Theory for Beginners",
+    "description": "Master the use of color in UI/UX design.",
+    "author": {
+      "name": "Daniel Green",
+      "image": "https://randomuser.me/api/portraits/men/52.jpg"
+    },
+    "readTime": "7 min read",
+    "excerpt": "Color theory is a fundamental aspect of design. This article explores how to use color effectively in UI/UX design to enhance aesthetics and improve user experience.",
+    "sections": [
+      {
+        "heading": "Understanding Color Theory",
+        "content": "Color theory involves the use of the color wheel to understand how colors relate to each other and how they can be combined harmoniously. It's essential in creating visually appealing designs."
+      },
+      {
+        "heading": "Color Schemes in UI Design",
+        "content": "Popular color schemes such as complementary, analogous, and triadic color schemes help create balance and harmony in design. Choosing the right scheme is vital for accessibility and user experience."
+      },
+      {
+        "heading": "Applying Color to Enhance UX",
+        "content": "Color influences user emotions and actions. Strategic use of color in UI design can direct user attention, communicate brand identity, and improve usability."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "Rachel Adams",
+        "timeAgo": "3 hours ago",
+        "comment": "I always find color theory fascinating. It’s amazing how much of an impact color can have on user behavior."
+      },
+      {
+        "commenter": "James Miller",
+        "timeAgo": "6 hours ago",
+        "comment": "Great guide! I’ve been struggling with color combinations for my app, this article gave me some good ideas."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "image": "https://picsum.photos/seed/react-vs-vue/800/600",
+    "category": "Development",
+    "title": "React vs Vue: A Complete Comparison",
+    "description": "Compare the strengths and weaknesses of React and Vue.",
+    "author": {
+      "name": "Emily Turner",
+      "image": "https://randomuser.me/api/portraits/women/55.jpg"
+    },
+    "readTime": "6 min read",
+    "excerpt": "React and Vue are two of the most popular JavaScript frameworks. This article compares their strengths and weaknesses to help developers choose the right tool for their projects.",
+    "sections": [
+      {
+        "heading": "What is React?",
+        "content": "React is a JavaScript library for building user interfaces, known for its component-based architecture and virtual DOM that optimizes rendering performance."
+      },
+      {
+        "heading": "What is Vue?",
+        "content": "Vue is a progressive JavaScript framework that focuses on simplicity and flexibility. It's designed to be incrementally adoptable and is easy to integrate with existing projects."
+      },
+      {
+        "heading": "React vs Vue: A Detailed Comparison",
+        "content": "React excels in large-scale applications and offers a robust ecosystem, while Vue provides a more beginner-friendly approach and better integration with smaller projects."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "John Smith",
+        "timeAgo": "2 hours ago",
+        "comment": "Great comparison! React has been my go-to for larger projects, but I’m now considering Vue for smaller, faster developments."
+      },
+      {
+        "commenter": "Lisa Green",
+        "timeAgo": "5 hours ago",
+        "comment": "I’ve been using Vue for my latest project, and it’s fantastic! The learning curve is much smaller than React."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "image": "https://picsum.photos/seed/vscode-extensions/800/600",
+    "category": "Development",
+    "title": "Top 10 VS Code Extensions in 2025",
+    "description": "Boost productivity with these must-have extensions.",
+    "author": {
+      "name": "Liam Scott",
+      "image": "https://randomuser.me/api/portraits/men/60.jpg"
+    },
+    "readTime": "5 min read",
+    "excerpt": "VS Code is one of the most popular code editors. This article highlights the top extensions you need to enhance your coding experience and increase productivity.",
+    "sections": [
+      {
+        "heading": "1. Prettier",
+        "content": "Prettier is an extension that automatically formats your code, helping maintain a consistent style across your projects."
+      },
+      {
+        "heading": "2. Live Server",
+        "content": "Live Server launches a local development server with live reload capability, making it easier to test your changes in real-time."
+      },
+      {
+        "heading": "3. GitLens",
+        "content": "GitLens supercharges the built-in Git capabilities in VS Code, giving you powerful insights into your repository history and codebase."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "Timothy Brown",
+        "timeAgo": "4 hours ago",
+        "comment": "Live Server is a game changer! It has saved me so much time while developing front-end applications."
+      },
+      {
+        "commenter": "Olivia White",
+        "timeAgo": "6 hours ago",
+        "comment": "Prettier is essential for maintaining code quality. I can't imagine coding without it!"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "image": "https://picsum.photos/seed/startup-growth/800/600",
+    "category": "Business",
+    "title": "Startup Growth Hacks for 2025",
+    "description": "Learn effective strategies to scale your startup fast.",
+    "author": {
+      "name": "Nina Patel",
+      "image": "https://randomuser.me/api/portraits/women/33.jpg"
+    },
+    "readTime": "8 min read",
+    "excerpt": "Scaling a startup requires smart strategies and efficient growth hacks. This article outlines the key steps to rapidly expand your business in 2025.",
+    "sections": [
+      {
+        "heading": "1. Leverage Digital Marketing",
+        "content": "Digital marketing has proven to be one of the most cost-effective ways to scale a startup. Use targeted ads and content marketing to reach your audience."
+      },
+      {
+        "heading": "2. Automate Your Workflow",
+        "content": "Streamline your processes by implementing automation tools that handle repetitive tasks, freeing up time for high-priority activities."
+      },
+      {
+        "heading": "3. Focus on Customer Retention",
+        "content": "Acquiring new customers is important, but retaining existing ones is more cost-effective. Invest in building strong relationships with your customers."
+      }
+    ],
+    "comments": [
+      {
+        "commenter": "Mark Spencer",
+        "timeAgo": "3 hours ago",
+        "comment": "Great tips! Automating tasks has saved us a lot of time. Definitely focusing more on customer retention."
+      },
+      {
+        "commenter": "Sophia Gray",
+        "timeAgo": "7 hours ago",
+        "comment": "I love the marketing strategy suggestions. I’ll be implementing some of these tips into my startup."
+      }
+    ]
+  }
+]
